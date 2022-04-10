@@ -8,6 +8,23 @@ public class JobSeekerDAO extends SuperDAO<JobSeeker> {
     private DegreeDAO degreeDAO;
     private UserDAO userDAO;
 
+    public JobSeeker findByID(int id) {
+        JobSeeker j = null;
+        try {
+            String query = "select * from jobseeker where id='" + id + "'";
+            ResultSet rs = this.st.executeQuery(query);
+            while (rs.next()) {
+                j = new JobSeeker(rs.getInt("id"), rs.getString("firstname"), rs.getString("lastname"), rs.getInt("gender"),
+                        rs.getString("birthdate"), rs.getString("address"), rs.getString("city"), rs.getString("mobile"),
+                        this.getDegreeDAO().findByID(rs.getInt("id")),
+                        rs.getString("passyear"), rs.getString("detail"), rs.getInt("experience"),
+                        this.getUserDAO().findByID(rs.getInt("id")));
+            }
+        } catch (Exception e) {
+        }
+        return j;
+    }
+
     @Override
     public JobSeeker createEntity(ResultSet rs) {
         JobSeeker j = null;

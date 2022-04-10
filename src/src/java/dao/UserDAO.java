@@ -12,7 +12,6 @@ public class UserDAO extends SuperDAO<User> {
         User u = null;
         try {
             String query = "select * from User where id='" + id + "'";
-
             ResultSet rs = this.st.executeQuery(query);
             while (rs.next()) {
                 u = new User(rs.getInt("id"), rs.getString("mail"), rs.getString("password"));

@@ -1,6 +1,8 @@
 
 package entity;
 
+import java.util.Date;
+
 /**
  *
  * @author Murat
@@ -11,12 +13,12 @@ public class Message {
     protected int id;
     protected String subject;
     protected String text;
-    protected String date;
+    protected Date date;
 
     public Message() {
     }
 
-    public Message(int id, String subject, String text, String date) {
+    public Message(int id, String subject, String text, Date date) {
         this.id = id;
         this.subject = subject;
         this.text = text;
@@ -47,14 +49,14 @@ public class Message {
         this.text = text;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
-    
+
             
             
 }

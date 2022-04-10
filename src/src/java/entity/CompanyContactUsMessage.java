@@ -1,17 +1,20 @@
-
 package entity;
+
+import java.util.Date;
 
 /**
  *
  * @author Murat
  */
-public class CompanyContactUsMessage extends Message{
+public class CompanyContactUsMessage extends Message {
+
     private Company from;
 
     public CompanyContactUsMessage() {
     }
 
-    public CompanyContactUsMessage(Company from) {
+    public CompanyContactUsMessage(Company from, int id, String subject, String text, Date date) {
+        super(id, subject, text, date);
         this.from = from;
     }
 
@@ -22,5 +25,5 @@ public class CompanyContactUsMessage extends Message{
     public void setFrom(Company from) {
         this.from = from;
     }
-    
+
 }

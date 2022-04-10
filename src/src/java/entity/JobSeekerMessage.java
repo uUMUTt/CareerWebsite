@@ -1,6 +1,8 @@
 
 package entity;
 
+import java.util.Date;
+
 /**
  *
  * @author Murat
@@ -12,10 +14,12 @@ public class JobSeekerMessage extends Message{
     public JobSeekerMessage() {
     }
 
-    public JobSeekerMessage(JobSeeker from, Company to) {
+    public JobSeekerMessage(JobSeeker from, Company to, int id, String subject, String text, Date date) {
+        super(id, subject, text, date);
         this.from = from;
         this.to = to;
     }
+    
 
     public JobSeeker getFrom() {
         return from;

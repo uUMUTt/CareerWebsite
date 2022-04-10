@@ -9,9 +9,10 @@ package entity;
  * @author ATG
  */
 public class Company {
+
     private int id;
     private String companyName;
-    private String address; 
+    private String address;
     private String city;
     private String contactPersonName;
     private String contactPersonLastname;
@@ -23,7 +24,8 @@ public class Company {
     public Company() {
     }
 
-    public Company(int id, String companyName, String address, String city, String contactPersonName, String contactPersonLastname, String mobile, CompanyType companyType, String detail, User user) {
+    public Company(int id, String companyName, String address, String city, String contactPersonName,
+            String contactPersonLastname, String mobile, CompanyType companyType, String detail, User user) {
         this.id = id;
         this.companyName = companyName;
         this.address = address;
@@ -35,8 +37,6 @@ public class Company {
         this.detail = detail;
         this.user = user;
     }
-    
-    
 
     public int getId() {
         return id;
@@ -118,9 +118,4 @@ public class Company {
         this.user = user;
     }
 
-    
-    
-    
-    
-    
 }
