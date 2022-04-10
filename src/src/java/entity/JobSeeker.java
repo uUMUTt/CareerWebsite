@@ -1,12 +1,11 @@
-
 package entity;
-
 
 /**
  *
  * @author kopuk
  */
 public class JobSeeker {
+
     private int id;
     private String firstName;
     private String lastName;
@@ -20,12 +19,12 @@ public class JobSeeker {
     private String detail;
     private int experience;
     private User user;
-    
-    public JobSeeker(){
-        
+
+    public JobSeeker() {
+
     }
 
-    public JobSeeker(int id, String firstName, String lastName, int gender, String birthDate, String address, String city, String mobile, int degreeId, String passYear, String detail, int experience, int userId) {
+    public JobSeeker(int id, String firstName, String lastName, int gender, String birthDate, String address, String city, String mobile, Degree degree, String passYear, String detail, int experience, User user) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,7 +39,6 @@ public class JobSeeker {
         this.experience = experience;
         this.user = user;
     }
-    
 
     public int getId() {
         return id;
@@ -146,7 +144,4 @@ public class JobSeeker {
         this.user = user;
     }
 
-    
-    
-    
 }

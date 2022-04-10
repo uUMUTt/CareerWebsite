@@ -1,14 +1,13 @@
-
 package dao;
+
 import entity.JobSeeker;
 import java.sql.ResultSet;
 
-public class JobSeekerDAO extends SuperDAO<JobSeeker>{
-    
+public class JobSeekerDAO extends SuperDAO<JobSeeker> {
+
     private DegreeDAO degreeDAO;
     private UserDAO userDAO;
-    
-    
+
     @Override
     public JobSeeker createEntity(ResultSet rs) {
         JobSeeker j = null;
@@ -22,7 +21,7 @@ public class JobSeekerDAO extends SuperDAO<JobSeeker>{
         }
         return j;
     }
-    
+
     @Override
     public String createQueryReadByID(int id) {
         return "select * from JobSeeker where id='" + id + "'";
@@ -51,10 +50,10 @@ public class JobSeekerDAO extends SuperDAO<JobSeeker>{
     @Override
     public String createQueryInsert(JobSeeker t) {
         return "insert into JobSeeker (firstname,lastname,gender,birthdate,address,city,mobile,degreeid,passyear,detail,experience,userid) "
-                + "values ('" + t.getFirstName()+ "' , '" + t.getLastName()+ "' , '" + t.getGender()+ "' , '" + t.getBirthDate()+ "' , "
+                + "values ('" + t.getFirstName() + "' , '" + t.getLastName() + "' , '" + t.getGender() + "' , '" + t.getBirthDate() + "' , "
                 + "'" + t.getAddress() + "' , '" + t.getCity() + "' ,'"
-                + "" + t.getMobile() + "' , '" + t.getDegree().getId() + "' , '" + t.getPassYear()+ "' , '" + t.getDetail() + "' ,"
-                + " '"+ t.getExperience() +"' , '" + t.getUser().getId() + "')";
+                + "" + t.getMobile() + "' , '" + t.getDegree().getId() + "' , '" + t.getPassYear() + "' , '" + t.getDetail() + "' ,"
+                + " '" + t.getExperience() + "' , '" + t.getUser().getId() + "')";
     }
 
     public DegreeDAO getDegreeDAO() {
