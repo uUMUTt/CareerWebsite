@@ -4,14 +4,38 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Degree</title>
     </h:head>
+    <h1>Degree</h1>
     <h:body>
-        <h1>Degree Table</h1>
         <h:form>
-            <h:commandButton action="/index" value="Home"/>
+            <h:commandButton action="/index" value="HOME"/>
         </h:form>
         <hr/>
-        
+        <h:form>
+            Title : <h:inputText value="#{degreeController.degree.title}" />
+            <h:commandButton rendered="#{degreeController.degree.id == 0}" action="#{degreeController.create}" value="Save"/>
+            <h:commandButton rendered="#{degreeController.degree.id != 0}" action="#{degreeController.update}" value="Edit"/>
+        </h:form>
+       
+        <h:form>
+            <h:dataTable value="#{degreeController.degrees}" var="degree">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    #{degree.id}
+                </h:column>
+               
+                <h:column>
+                    <f:facet name="header">TITLE</f:facet>
+                    #{degree.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADMINISTRATION</f:facet>
+                    <h:commandButton action="#{degreeController.delete(degree)}" value="delete"/>
+                    <h:commandButton action="#{degreeController.setDegree(degree)}" value="edit"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+       
     </h:body>
 </html>
