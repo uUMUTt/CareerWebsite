@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package entity;
 
 /**
@@ -9,5 +6,32 @@ package entity;
  * @author Murat
  */
 public class JobSeekerMessage {
+    private JobSeeker from;
+    private Company to;
+
+    public JobSeekerMessage() {
+    }
+
+    public JobSeekerMessage(JobSeeker from, Company to) {
+        this.from = from;
+        this.to = to;
+    }
+
+    public JobSeeker getFrom() {
+        return from;
+    }
+
+    public void setFrom(JobSeeker from) {
+        this.from = from;
+    }
+
+    public Company getTo() {
+        return to;
+    }
+
+    public void setTo(Company to) {
+        this.to = to;
+    }
+    
     
 }
