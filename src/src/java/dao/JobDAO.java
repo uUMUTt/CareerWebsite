@@ -11,7 +11,7 @@ public class JobDAO extends SuperDAO<Job> {
     public Job createEntity(ResultSet rs) {
         Job Jb = null;
         try {
-            Jb = new Job(rs.getInt("id"), this.getDegreeDAO().findByID(rs.getInt("id")), rs.getDouble("salary"),
+            Jb = new Job(rs.getInt("id"), this.getDegreeDAO().findByID(rs.getInt("degreeid")), rs.getDouble("salary"),
                     rs.getInt("experience"), rs.getString("detail"), rs.getString("deadline"), rs.getString("creationdate"));
 
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class JobDAO extends SuperDAO<Job> {
     @Override
     public String createQueryInsert(Job t) {
         return "insert into Job (degreeid,salary,experience,detail,deadline) "
-                + "values ('" + t.getDegree() + "' , '" + t.getSalary() + "' , '" + t.getExperience() + "' , '" + t.getDetail() + "' , "
+                + "values ('" + t.getDegree().getId() + "' , '" + t.getSalary() + "' , '" + t.getExperience() + "' , '" + t.getDetail() + "' , "
                 + "'" + t.getDeadline() + "' )";
     }
 

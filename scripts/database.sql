@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS Job (
     salary NUMERIC(7,2),
     experience INT,
     detail TEXT NOT NULL,
-    deadline DATE NOT NULL,
+    deadline VARCHAR(80) NOT NULL,
     creationDate DATE DEFAULT CURRENT_DATE,
     CONSTRAINT fk_degree    
         FOREIGN KEY (degreeID)

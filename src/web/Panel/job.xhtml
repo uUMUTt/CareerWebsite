@@ -17,7 +17,7 @@
         <h:form>
             
             Degree : 
-            <h:selectOneMenu value="#{jobController.job.degree}" converter="jobConverter">
+            <h:selectOneMenu value="#{jobController.job.degree}" converter="degreeConverter">
                 <f:selectItems value="#{degreeController.degrees}" var="degree" itemValue="#{degree}" itemLabel="#{degree.title}"/>
             </h:selectOneMenu><br/>
             Salary : <h:inputText value="#{jobController.job.salary}" /><br/>   
@@ -31,14 +31,14 @@
         <hr/>
         
         <h:form>
-            <h:dataTable value="#{jobController.jobs}" var="j">
+            <h:dataTable border="1" value="#{jobController.jobs}" var="j">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                     #{j.id}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">DEGREE ID</f:facet>
-                    #{j.degree.id}
+                    <f:facet name="header">DEGREE TITLE</f:facet>
+                    #{j.degree.title}
                 </h:column>
                 <h:column>
                     <f:facet name="header">SALARY</f:facet>
@@ -58,12 +58,12 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">CREATIONDATE</f:facet>
-                    #{j.creationdate}
+                    #{j.creationDate}
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADMINISTRATION</f:facet>
                     <h:commandButton action="#{jobController.delete(j)}" value="delete"/>
-                    <h:commandButton action="#{jobController.setPost(j)}" value="edit"/>
+                    <h:commandButton action="#{jobController.setJob(j)}" value="edit"/>
                 </h:column>
             </h:dataTable>
         </h:form>
