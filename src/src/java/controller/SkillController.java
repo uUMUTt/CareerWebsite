@@ -5,11 +5,13 @@ import jakarta.inject.Named;
 import jakarta.enterprise.context.Dependent;
 import dao.SkillDAO;
 import entity.Skill;
+import jakarta.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.util.List;
 
 @Named(value = "skillController")
-@Dependent
-public class SkillController {
+@SessionScoped
+public class SkillController implements Serializable{
 
     private SkillDAO skillDAO;
     private Skill skill;
