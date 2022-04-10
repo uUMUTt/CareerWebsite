@@ -1,23 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package dao;
 
 import entity.CompanyType;
 import entity.User;
 import java.sql.ResultSet;
 
-/**
- *
- * @author kalix
- */
+
 public class UserDAO extends SuperDAO<User>{
     
     public User findByID(int id) {
         User u = null;
         try {
-            String query  = "select * from User where id='"+id+"'";
+            String query  = "select * from User where id='"+ id +"'";
             ResultSet rs = this.st.executeQuery(query);
             while(rs.next()) {
                 u = new User(rs.getInt("id"), rs.getString("mail"),rs.getString("password"));
@@ -34,7 +28,7 @@ public class UserDAO extends SuperDAO<User>{
     public User createEntity(ResultSet rs) {
         User u = null;
         try {
-            u = new User(rs.getInt("id"), rs.getString("mail"), rs.getNString("password"));
+            u = new User(rs.getInt("id"), rs.getString("mail"), rs.getString("password"));
         } catch (Exception e) {
         }
         return u;
@@ -57,12 +51,12 @@ public class UserDAO extends SuperDAO<User>{
 
     @Override
     public String createQueryReadAll() {
-        return "select * from Company";
+        return "select * from User";
     }
 
     @Override
     public String createQueryInsert(User t) {
-        return "insert into CompanyType (title) values ('" + t.getMail()+ "' , '" + t.getPassword()+ "')";
+        return "insert into User (title) " + " values ('" + t.getMail()+ "' , '" + t.getPassword()+ "')";
     }
     
 }

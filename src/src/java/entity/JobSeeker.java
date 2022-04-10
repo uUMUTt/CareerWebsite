@@ -15,11 +15,11 @@ public class JobSeeker {
     private String address;
     private String city;
     private String mobile;
-    private int degreeId;
+    private Degree degree;
     private String passYear;
     private String detail;
     private int experience;
-    private int userId;
+    private User user;
     
     public JobSeeker(){
         
@@ -34,11 +34,11 @@ public class JobSeeker {
         this.address = address;
         this.city = city;
         this.mobile = mobile;
-        this.degreeId = degreeId;
+        this.degree = degree;
         this.passYear = passYear;
         this.detail = detail;
         this.experience = experience;
-        this.userId = userId;
+        this.user = user;
     }
     
 
@@ -106,12 +106,12 @@ public class JobSeeker {
         this.mobile = mobile;
     }
 
-    public int getDegreeId() {
-        return degreeId;
+    public Degree getDegree() {
+        return degree;
     }
 
-    public void setDegreeId(int degreeId) {
-        this.degreeId = degreeId;
+    public void setDegree(Degree degree) {
+        this.degree = degree;
     }
 
     public String getPassYear() {
@@ -138,13 +138,15 @@ public class JobSeeker {
         this.experience = experience;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
+
+    
     
     
 }
