@@ -3,7 +3,7 @@ package entity;
 
 /**
  *
- * @author kalix
+ * @author Umut Karadas
  */
 
 //P_User TABLE
