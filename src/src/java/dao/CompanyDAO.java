@@ -43,7 +43,7 @@ public class CompanyDAO extends SuperDAO<Company> {
                 + " contactpersonlastname='" + t.getContactPersonLastname() + "' ,"
                 + "mobile='" + t.getMobile() + "' , companytypeid='" + t.getCompanyType().getId() + "' , "
                 + "detail='" + t.getDetail() + "' , "
-                + "userid='" + t.getUser().getId() + "'";
+                + "userid='" + t.getUser().getId() + "' where id='" + t.getId() + "'";
     }
 
     @Override

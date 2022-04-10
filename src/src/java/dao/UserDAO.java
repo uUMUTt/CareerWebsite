@@ -6,24 +6,23 @@ import entity.User;
 import java.sql.ResultSet;
 
 
-public class UserDAO extends SuperDAO<User>{
-    
+public class UserDAO extends SuperDAO<User> {
+
     public User findByID(int id) {
         User u = null;
         try {
-            String query  = "select * from User where id='"+ id +"'";
+            String query = "select * from User where id='" + id + "'";
+
             ResultSet rs = this.st.executeQuery(query);
-            while(rs.next()) {
-                u = new User(rs.getInt("id"), rs.getString("mail"),rs.getString("password"));
+            while (rs.next()) {
+                u = new User(rs.getInt("id"), rs.getString("mail"), rs.getString("password"));
             }
         } catch (Exception e) {
         }
         return u;
     }
-    
-    
-    //***********************************************************
 
+    //***********************************************************
     @Override
     public User createEntity(ResultSet rs) {
         User u = null;
@@ -46,7 +45,7 @@ public class UserDAO extends SuperDAO<User>{
 
     @Override
     public String createQueryUpdate(User t) {
-        return "update User set mail='" + t.getMail() + "' , password='" + t.getPassword() + "'";
+        return "update User set mail='" + t.getMail() + "' , password='" + t.getPassword() + "' where id='" + t.getId() + "'";
     }
 
     @Override
@@ -56,7 +55,10 @@ public class UserDAO extends SuperDAO<User>{
 
     @Override
     public String createQueryInsert(User t) {
+
         return "insert into User (title) " + " values ('" + t.getMail()+ "' , '" + t.getPassword()+ "')";
+
+       
     }
-    
+
 }
