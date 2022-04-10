@@ -11,7 +11,7 @@ public class UserDAO extends SuperDAO<User> {
     public User findByID(int id) {
         User u = null;
         try {
-            String query = "select * from User where id='" + id + "'";
+            String query = "select * from p_user where id='" + id + "'";
             ResultSet rs = this.st.executeQuery(query);
             while (rs.next()) {
                 u = new User(rs.getInt("id"), rs.getString("mail"), rs.getString("password"));
@@ -34,28 +34,28 @@ public class UserDAO extends SuperDAO<User> {
 
     @Override
     public String createQueryReadByID(int id) {
-        return "select * from User where id='" + id + "'";
+        return "select * from p_user where id='" + id + "'";
     }
 
     @Override
     public String createQueryDelete(User t) {
-        return "delete from User where id='" + t.getId() + "'";
+        return "delete from p_user where id='" + t.getId() + "'";
     }
 
     @Override
     public String createQueryUpdate(User t) {
-        return "update User set mail='" + t.getMail() + "' , password='" + t.getPassword() + "' where id='" + t.getId() + "'";
+        return "update p_user set mail='" + t.getMail() + "' , password='" + t.getPassword() + "' where id='" + t.getId() + "'";
     }
 
     @Override
     public String createQueryReadAll() {
-        return "select * from User";
+        return "select * from p_user";
     }
 
     @Override
     public String createQueryInsert(User t) {
 
-        return "insert into User (title) " + " values ('" + t.getMail()+ "' , '" + t.getPassword()+ "')";
+        return "insert into p_user (mail,password) " + " values ('" + t.getMail()+ "' , '" + t.getPassword()+ "')";
 
        
     }
