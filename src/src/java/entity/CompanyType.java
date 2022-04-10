@@ -34,4 +34,28 @@ public class CompanyType {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CompanyType other = (CompanyType) obj;
+        return this.id == other.id;
+    }
+    
+    
 }

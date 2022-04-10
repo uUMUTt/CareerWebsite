@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Job</title>
+    </h:head>
+    <h:body>
+        <h1>Job Table</h1>
+        <h:form>
+            <h:commandButton action="/index" value="Home"/>
+        </h:form>
+        
+        <hr/>
+        
+        <h:form>
+            
+            Company Types : 
+            <h:selectOneMenu value="#{companyController.company.companyType}" converter="companyTypeConverter">
+                <f:selectItems value="#{companyTypeController.companyTypes}" var="companyType" itemValue="#{companyType}" itemLabel="#{companyType.title}"/>
+            </h:selectOneMenu><br/>
+            Users : 
+            <h:selectOneMenu value="#{companyController.company.user}" converter="userConverter">
+                <f:selectItems value="#{userController.users}" var="user" itemValue="#{user}" itemLabel="#{user.mail}"/>
+            </h:selectOneMenu><br/>
+            Company Name : <h:inputText value="#{companyController.company.companyName}" /><br/>   
+            Address : <h:inputText value="#{companyController.company.address}" /><br/>   
+            City : <h:inputTextarea value="#{companyController.company.city}" /><br/>   
+            Person Name : <h:inputText value="#{companyController.company.contactPersonName}" /><br/>   
+            Person Last Name : <h:inputText value="#{companyController.company.contactPersonLastname}" /><br/>   
+            Mobile : <h:inputText value="#{companyController.company.mobile}" /><br/>   
+            Detail : <h:inputTextarea value="#{companyController.company.detail}" /><br/>   
+            <h:commandButton rendered="#{companyController.company.id == 0}" action="#{companyController.create}" value="Save"/>
+            <h:commandButton rendered="#{companyController.company.id != 0}" action="#{companyController.update}" value="Edit"/>
+        </h:form>
+        
+        <hr/>
+        
+        <h:form>
+            <h:dataTable border="1" value="#{companyController.companies}" var="c">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    #{c.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">COMPANY NAME</f:facet>
+                    #{c.companyName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">USER MAIL</f:facet>
+                    #{c.user.mail}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">COMPANY TYPE</f:facet>
+                    #{c.companyType.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADDRESS</f:facet>
+                    #{c.address}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">CITY</f:facet>
+                    #{c.city}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">PERSON NAME</f:facet>
+                    #{c.contactPersonName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">PERSON LAST NAME</f:facet>
+                    #{c.contactPersonLastname}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">MOBILE</f:facet>
+                    #{c.mobile}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DETAIL</f:facet>
+                    #{c.detail}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADMINISTRATION</f:facet>
+                    <h:commandButton action="#{companyController.delete(c)}" value="delete"/>
+                    <h:commandButton action="#{companyController.setCompany(c)}" value="edit"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        
+    </h:body>
+</html>
+
