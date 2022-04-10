@@ -9,7 +9,7 @@ public class Job {
     private int id;
     private Degree degree;
     private double salary;
-    private int experienceYear;
+    private int experience;
     private String detail;  
     private String deadline;
     private String creationDate;
@@ -18,11 +18,11 @@ public class Job {
         
     }
 
-    public Job(int id, Degree degree, double salary, int experienceYear, String detail, String deadline, String creationDate) {
+    public Job(int id, Degree degree, double salary, int experience, String detail, String deadline, String creationDate) {
         this.id = id;
         this.degree = degree;
         this.salary = salary;
-        this.experienceYear = experienceYear;
+        this.experience = experience;
         this.detail = detail;
         this.deadline = deadline;
         this.creationDate = creationDate;
@@ -52,13 +52,15 @@ public class Job {
         this.salary = salary;
     }
 
-    public int getExperienceYear() {
-        return experienceYear;
+    public int getExperience() {
+        return experience;
     }
 
-    public void setExperienceYear(int experienceYear) {
-        this.experienceYear = experienceYear;
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
+
+    
 
     public String getDetail() {
         return detail;
