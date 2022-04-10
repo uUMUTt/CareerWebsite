@@ -16,14 +16,15 @@ public class Company {
     private String contactPersonName;
     private String contactPersonLastname;
     private String mobile;
-    private int companyTypeID;
+    private CompanyType company;
     private String detail;
-    private int userID;
+    private User user;
 
     public Company() {
+        
     }
-
-    public Company(int id, String companyName, String address, String city, String contactPersonName, String contactPersonLastname, String mobile, int companyTypeID, String detail, int userID) {
+    
+    public Company(int id, String companyName, String address, String city, String contactPersonName, String contactPersonLastname, String mobile, CompanyType company, String detail, User user) {
         this.id = id;
         this.companyName = companyName;
         this.address = address;
@@ -31,10 +32,12 @@ public class Company {
         this.contactPersonName = contactPersonName;
         this.contactPersonLastname = contactPersonLastname;
         this.mobile = mobile;
-        this.companyTypeID = companyTypeID;
+        this.company = company;
         this.detail = detail;
-        this.userID = userID;
+        this.user = user;
     }
+
+    
 
     public int getId() {
         return id;
@@ -92,13 +95,15 @@ public class Company {
         this.mobile = mobile;
     }
 
-    public int getCompanyTypeID() {
-        return companyTypeID;
+    public CompanyType getCompany() {
+        return company;
     }
 
-    public void setCompanyTypeID(int companyTypeID) {
-        this.companyTypeID = companyTypeID;
+    public void setCompany(CompanyType company) {
+        this.company = company;
     }
+
+    
 
     public String getDetail() {
         return detail;
@@ -108,13 +113,15 @@ public class Company {
         this.detail = detail;
     }
 
-    public int getUserID() {
-        return userID;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUser(User user) {
+        this.user = user;
     }
+
+    
     
     
     

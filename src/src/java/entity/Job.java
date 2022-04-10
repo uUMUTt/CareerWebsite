@@ -9,5 +9,9 @@ package entity;
  * @author kalix
  */
 public class Job {
-    
+    private int id;
+    private Degree degree;
+    private double salary;
+    private int experienceYear;
+    private String detail;  
 }
