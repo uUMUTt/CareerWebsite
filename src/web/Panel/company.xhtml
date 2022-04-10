@@ -4,10 +4,10 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Job</title>
+        <title>Company Table</title>
     </h:head>
     <h:body>
-        <h1>Job Table</h1>
+        <h1>Company Table</h1>
         <h:form>
             <h:commandButton action="/index" value="Home"/>
         </h:form>
@@ -20,7 +20,7 @@
             <h:selectOneMenu value="#{companyController.company.companyType}" converter="companyTypeConverter">
                 <f:selectItems value="#{companyTypeController.companyTypes}" var="companyType" itemValue="#{companyType}" itemLabel="#{companyType.title}"/>
             </h:selectOneMenu><br/>
-            Users : 
+            Users :     
             <h:selectOneMenu value="#{companyController.company.user}" converter="userConverter">
                 <f:selectItems value="#{userController.users}" var="user" itemValue="#{user}" itemLabel="#{user.mail}"/>
             </h:selectOneMenu><br/>

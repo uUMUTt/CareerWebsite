@@ -33,9 +33,9 @@ public class CompanyDAO extends SuperDAO<Company> {
         try {
             c = new Company(rs.getInt("id"), rs.getString("companyname"), rs.getString("address"), rs.getString("city"),
                     rs.getString("contactpersonname"), rs.getString("contactpersonlastname"),
-                    rs.getString("mobile"), this.getCompanyTypeDAO().findByID(rs.getInt("id")),
+                    rs.getString("mobile"), this.getCompanyTypeDAO().findByID(rs.getInt("companytypeid")),
                     rs.getString("detail"),
-                    this.getUserDAO().findByID(rs.getInt("id")));
+                    this.getUserDAO().findByID(rs.getInt("userid")));
         } catch (Exception e) {
         }
         return c;
