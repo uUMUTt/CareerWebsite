@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
-import entity.Company;
 import entity.JobSeekerMessage;
 import java.sql.ResultSet;
 
@@ -12,8 +7,8 @@ import java.sql.ResultSet;
  *
  * @author Umut Karadas
  */
-public class JobSeekerMessageDAO extends SuperDAO<JobSeekerMessage>{
-    
+public class JobSeekerMessageDAO extends SuperDAO<JobSeekerMessage> {
+
     private JobSeekerDAO JobSeekerDAO;
     private CompanyDAO CompanyDAO;
 
@@ -31,22 +26,27 @@ public class JobSeekerMessageDAO extends SuperDAO<JobSeekerMessage>{
 
     @Override
     public String createQueryReadByID(int id) {
+        return "select * from JobseekerMessage where id='" + id + "'";
     }
 
     @Override
     public String createQueryDelete(JobSeekerMessage t) {
+        return "delete from JobseekerMessage where id='" + t.getId() + "'";
     }
 
     @Override
     public String createQueryUpdate(JobSeekerMessage t) {
+        return "update JobseekerMessage set subject='" + t.getSubject() + "' , content='" + t.getText() + "' where id='" + t.getId() + "'";
     }
 
     @Override
     public String createQueryReadAll() {
+        return "select * from JobseekerMessage";
     }
 
     @Override
     public String createQueryInsert(JobSeekerMessage t) {
+        return "insert into JobSeekerMessage (from_p,to_p,subject,content) values ('" + t.getFrom() + "' , " + t.getTo() + "' , " + t.getSubject() + "' , " + t.getText() + "' , )";
     }
 
     public JobSeekerDAO getJobSeekerDAO() {
@@ -64,6 +64,5 @@ public class JobSeekerMessageDAO extends SuperDAO<JobSeekerMessage>{
     public void setCompanyDAO(CompanyDAO CompanyDAO) {
         this.CompanyDAO = CompanyDAO;
     }
-    
-    
+
 }
