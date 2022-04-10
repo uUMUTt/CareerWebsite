@@ -50,7 +50,7 @@ public class CompanyTypeDAO extends SuperDAO<CompanyType> {
 
     @Override
     public String createQueryUpdate(CompanyType t) {
-        return "update CompanyType set title='" + t.getTitle() +"'";
+        return "update CompanyType set title='" + t.getTitle() + "' where id='" + t.getId() + "'";
     }
 
     @Override
