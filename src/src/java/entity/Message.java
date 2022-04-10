@@ -6,16 +6,12 @@ package entity;
  * @author Murat
  */
 public class Message {
-    /* id SERIAL UNIQUE NOT NULL,
-    subject VARCHAR,
-    content TEXT NOT NULL,
-    date DATE DEFAULT CURRENT_DATE,
-    PRIMARY KEY (id) */
+        
     
-    private int id;
-    private String subject;
-    private String text;
-    private String date;
+    protected int id;
+    protected String subject;
+    protected String text;
+    protected String date;
 
     public Message() {
     }

@@ -5,7 +5,7 @@ package entity;
  *
  * @author Murat
  */
-public class JobSeekerMessage {
+public class JobSeekerMessage extends Message{
     private JobSeeker from;
     private Company to;
 
