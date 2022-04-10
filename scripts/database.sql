@@ -120,8 +120,8 @@ CREATE TABLE IF NOT EXISTS Message (
 );
 
 CREATE  TABLE IF NOT EXISTS JobSeekerMessage(
-    from_p INT UNIQUE NOT NULL,
-    to_p INT UNIQUE NOT NULL,
+        from_p INT UNIQUE NOT NULL,
+        to_p INT UNIQUE NOT NULL,
     FOREIGN KEY (from_p) REFERENCES JobSeeker (id),
     FOREIGN KEY (to_p) REFERENCES Company (id)
 )INHERITS (Message);
