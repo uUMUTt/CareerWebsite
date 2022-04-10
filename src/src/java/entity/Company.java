@@ -16,15 +16,14 @@ public class Company {
     private String contactPersonName;
     private String contactPersonLastname;
     private String mobile;
-    private CompanyType company;
+    private CompanyType companyType;
     private String detail;
     private User user;
 
     public Company() {
-        
     }
-    
-    public Company(int id, String companyName, String address, String city, String contactPersonName, String contactPersonLastname, String mobile, CompanyType company, String detail, User user) {
+
+    public Company(int id, String companyName, String address, String city, String contactPersonName, String contactPersonLastname, String mobile, CompanyType companyType, String detail, User user) {
         this.id = id;
         this.companyName = companyName;
         this.address = address;
@@ -32,11 +31,11 @@ public class Company {
         this.contactPersonName = contactPersonName;
         this.contactPersonLastname = contactPersonLastname;
         this.mobile = mobile;
-        this.company = company;
+        this.companyType = companyType;
         this.detail = detail;
         this.user = user;
     }
-
+    
     
 
     public int getId() {
@@ -95,15 +94,13 @@ public class Company {
         this.mobile = mobile;
     }
 
-    public CompanyType getCompany() {
-        return company;
+    public CompanyType getCompanyType() {
+        return companyType;
     }
 
-    public void setCompany(CompanyType company) {
-        this.company = company;
+    public void setCompanyType(CompanyType companyType) {
+        this.companyType = companyType;
     }
-
-    
 
     public String getDetail() {
         return detail;
@@ -121,6 +118,7 @@ public class Company {
         this.user = user;
     }
 
+    
     
     
     
