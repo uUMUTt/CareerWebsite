@@ -25,18 +25,18 @@ public class JobSeekerController implements Serializable {
     public String create(){
         jobSeekerDAO.insert(jobSeeker);
         jobSeeker = new JobSeeker();
-        return "company_type";
+        return "jobseeker";
     }
     
     public String delete(JobSeeker p) {
         jobSeekerDAO.delete(p);
-        return "company_type";
+        return "jobseeker";
     }
     
     public String update() {
         jobSeekerDAO.update(jobSeeker);
         jobSeeker = new JobSeeker();
-        return "company_type";
+        return "jobseeker";
     }
 
     public JobSeeker getJobSeeker() {
