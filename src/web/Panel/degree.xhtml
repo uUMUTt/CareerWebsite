@@ -18,6 +18,17 @@
             <h:commandButton rendered="#{degreeController.degree.id != 0}" action="#{degreeController.update}" value="Edit"/>
         </h:form>
        
+        <hr/>
+        
+        <h:form>
+            Find By ID : <h:inputText  value="#{degreeController.id}" /><br/> 
+            <h:commandButton action="#{degreeController.readByID}" value="Search"/>
+            <h:commandButton action="#{degreeController.listAll}" value="List All"/>
+        </h:form>
+        
+        <hr/>
+        
+        
         <h:form>
             <h:dataTable value="#{degreeController.degrees}" var="degree">
                 <h:column>

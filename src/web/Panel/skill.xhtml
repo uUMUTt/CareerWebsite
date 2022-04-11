@@ -19,6 +19,14 @@
         </h:form>
        
         <h:form>
+            Find By ID : <h:inputText  value="#{skillController.id}" /><br/> 
+            <h:commandButton action="#{skillController.readByID}" value="Search"/>
+            <h:commandButton action="#{skillController.listAll}" value="List All"/>
+        </h:form>
+        
+        <hr/>
+        
+        <h:form>
             <h:dataTable value="#{skillController.skills}" var="skill">
                 <h:column>
                     <f:facet name="header">ID</f:facet>

@@ -1,4 +1,3 @@
-
 package controller;
 
 import jakarta.inject.Named;
@@ -7,6 +6,7 @@ import java.io.Serializable;
 import dao.DegreeDAO;
 import entity.Degree;
 import entity.Job;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,22 +20,34 @@ public class DegreeController implements Serializable {
     private DegreeDAO degreeDAO;
     private Degree degree;
     private List<Degree> degrees;
-    
-    
+    private int id;
+
     public DegreeController() {
+        this.id = -1;
     }
-    
-    public String create(){
+
+    public String listAll() {
+        this.id = -1;
+        return "degree";
+    }
+
+    public String readByID() {
+        this.degrees = new ArrayList<>();
+        this.degrees.add(this.getDegreeDAO().readByID(this.id));
+        return "degree";
+    }
+
+    public String create() {
         degreeDAO.insert(degree);
         degree = new Degree();
         return "degree";
     }
-    
+
     public String delete(Degree p) {
         degreeDAO.delete(p);
         return "degree";
     }
-    
+
     public String update() {
         degreeDAO.update(degree);
         degree = new Degree();
@@ -65,14 +77,23 @@ public class DegreeController implements Serializable {
     }
 
     public List<Degree> getDegrees() {
-        this.degrees = this.getDegreeDAO().readAll();
+        if (this.id == -1) {
+            this.degrees = this.getDegreeDAO().readAll();
+            //this.id = -1;
+        }
         return degrees;
     }
 
     public void setDegrees(List<Degree> degrees) {
         this.degrees = degrees;
     }
-    
-    
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
