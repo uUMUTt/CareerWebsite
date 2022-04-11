@@ -90,7 +90,6 @@ public class CompanyController implements Serializable {
     public List<Company> getCompanies() {
         if(this.id == -1){
            this.companies = this.getCompanyDAO().readAll(); 
-           this.id = -1;
         }
         return companies;
     }
