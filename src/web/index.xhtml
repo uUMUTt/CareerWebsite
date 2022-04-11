@@ -7,20 +7,9 @@
 
         <h:outputStylesheet library="css" name="bootstrap.min.css" />
 
+        <title>Home Page</title>
         <style>
-            .size  {
-                background-color: #4CAF50;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-            }
-
+            
             #baslik {
                 background-color: #055160;
                 color: white;
@@ -32,10 +21,13 @@
         </style>
     </h:head>
     <h:body>
-        <div class="container mt-5">
-            <h1 id="baslik">CAREER WEBSITES</h1>        
-            <h:form >
 
+        <div class="container mt-5">
+            <h1 id="baslik">CAREER WEBSITES</h1> 
+        </div>
+
+        <h:body>
+            <h:form>
                 <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1"  action="/Panel/job" value="Job Panel"/>
                 <h:commandButton styleClass="btn btn-success container p-2 m-1" action="/Panel/degree" value="Degree Panel"/>
                 <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1" action="/Panel/company_type" value="Company Type Panel"/>
@@ -45,7 +37,9 @@
                 <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1" action="/Panel/jobseeker" value="Jobseeker Panel"/>
 
             </h:form>
-        </div>
+
+        </h:body>
     </h:body>
+      
 </html>
 

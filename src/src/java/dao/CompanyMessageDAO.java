@@ -47,8 +47,8 @@ public class CompanyMessageDAO extends SuperDAO<CompanyMessage> {
 
     @Override
     public String createQueryInsert(CompanyMessage t) {
-        return "insert into CompanyMessage (from_p,to_p,subject,content) values ('" + t.getFrom() + "' , " + t.getTo() + "' ,"
-                + " " + t.getSubject() + "' , " + t.getText() + "' , )";
+        return "insert into CompanyMessage (from_p,to_p,subject,content) values ('" + t.getFrom() + "' , '" + t.getTo() + "' ,"
+                + " '" + t.getSubject() + "' , '" + t.getText() + "' )";
     }
 
     public JobSeekerDAO getJobSeekerDAO() {
