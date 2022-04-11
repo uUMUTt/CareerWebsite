@@ -31,6 +31,14 @@
         <hr/>
         
         <h:form>
+            Find By ID : <h:inputText  value="#{jobController.id}" /><br/> 
+            <h:commandButton action="#{jobController.readByID}" value="Search"/>
+            <h:commandButton action="#{jobController.listAll}" value="List All"/>
+        </h:form>
+        
+        <hr/>
+        
+        <h:form>
             <h:dataTable border="1" value="#{jobController.jobs}" var="j">
                 <h:column>
                     <f:facet name="header">ID</f:facet>

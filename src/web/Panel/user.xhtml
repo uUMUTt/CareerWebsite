@@ -20,6 +20,14 @@
         </h:form>
        
         <h:form>
+            Find By ID : <h:inputText  value="#{userController.id}" /><br/> 
+            <h:commandButton action="#{userController.readByID}" value="Search"/>
+            <h:commandButton action="#{userController.listAll}" value="List All"/>
+        </h:form>
+        
+        <hr/>
+        
+        <h:form>
             <h:dataTable value="#{userController.users}" var="user">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
