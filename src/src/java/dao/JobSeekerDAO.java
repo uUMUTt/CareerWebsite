@@ -16,9 +16,9 @@ public class JobSeekerDAO extends SuperDAO<JobSeeker> {
             while (rs.next()) {
                 j = new JobSeeker(rs.getInt("id"), rs.getString("firstname"), rs.getString("lastname"), rs.getInt("gender"),
                         rs.getString("birthdate"), rs.getString("address"), rs.getString("city"), rs.getString("mobile"),
-                        this.getDegreeDAO().findByID(rs.getInt("id")),
+                        this.getDegreeDAO().findByID(rs.getInt("degreeid")),
                         rs.getString("passyear"), rs.getString("detail"), rs.getInt("experience"),
-                        this.getUserDAO().findByID(rs.getInt("id")));
+                        this.getUserDAO().findByID(rs.getInt("userid")));
             }
         } catch (Exception e) {
         }
@@ -31,9 +31,9 @@ public class JobSeekerDAO extends SuperDAO<JobSeeker> {
         try {
             j = new JobSeeker(rs.getInt("id"), rs.getString("firstname"), rs.getString("lastname"), rs.getInt("gender"),
                     rs.getString("birthdate"), rs.getString("address"), rs.getString("city"), rs.getString("mobile"),
-                    this.getDegreeDAO().findByID(rs.getInt("id")),
+                    this.getDegreeDAO().findByID(rs.getInt("degreeid")),
                     rs.getString("passyear"), rs.getString("detail"), rs.getInt("experience"),
-                    this.getUserDAO().findByID(rs.getInt("id")));
+                    this.getUserDAO().findByID(rs.getInt("userid")));
         } catch (Exception e) {
         }
         return j;
@@ -69,7 +69,7 @@ public class JobSeekerDAO extends SuperDAO<JobSeeker> {
         return "insert into JobSeeker (firstname,lastname,gender,birthdate,address,city,mobile,degreeid,passyear,detail,experience,userid) "
                 + "values ('" + t.getFirstName() + "' , '" + t.getLastName() + "' , '" + t.getGender() + "' , '" + t.getBirthDate() + "' , "
                 + "'" + t.getAddress() + "' , '" + t.getCity() + "' ,'"
-                + "" + t.getMobile() + "' , '" + t.getDegree().getId() + "' , '" + t.getPassYear() + "' , '" + t.getDetail() + "' ,"
+                + "'" + t.getMobile() + "' , '" + t.getDegree().getId() + "' , '" + t.getPassYear() + "' , '" + t.getDetail() + "' ,"
                 + " '" + t.getExperience() + "' , '" + t.getUser().getId() + "')";
     }
 

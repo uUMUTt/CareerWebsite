@@ -4,100 +4,100 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Job</title>
+        <title>Jobseeker Table</title>
     </h:head>
     <h:body>
-        <h1>Job Table</h1>
+        <h1>Jobseeker Table</h1>
         <h:form>
             <h:commandButton action="/index" value="Home"/>
         </h:form>
-        
+
         <hr/>
-        
+
         <h:form>
-            
-            Job Seeker: 
-            <h:selectOneMenu value="#{jobseekerController.jobseeker.degree}" converter="degreeConverter">
-                <f:selectItems value="#{degreeController.degree}" var="degree" itemValue="#{degree}" itemLabel="#{degree.title}"/>
+
+            Degree: 
+            <h:selectOneMenu value="#{jobseekerController.jobSeeker.degree}" converter="degreeConverter">
+                <f:selectItems value="#{degreeController.degrees}" var="degree" itemValue="#{degree}" itemLabel="#{degree.title}"/>
             </h:selectOneMenu><br/>
             Users : 
-            <h:selectOneMenu value="#{jobseekerController.jobseeker.user}" converter="userConverter">
+            <h:selectOneMenu value="#{jobseekerController.jobSeeker.user}" converter="userConverter">
                 <f:selectItems value="#{userController.users}" var="user" itemValue="#{user}" itemLabel="#{user.mail}"/>
             </h:selectOneMenu><br/>
-            First Name : <h:inputText value="#{jobseekerController.jobseeker.firstName}" /><br/> 
-            Last Name : <h:inputText value="#{jobseekerController.jobseeker.lastName}" /><br/> 
-            Gender : <h:inputText value="#{jobseekerController.jobseeker.gender}" /><br/>
-            Birth Date : <h:inputText value="#{jobseekerController.jobseeker.birthDate}" /><br/> 
-            Address : <h:inputText value="#{jobseekerController.jobseeker.address}" /><br/>   
-            City : <h:inputTextarea value="#{jobseekerController.jobseeker.city}" /><br/>   
-            Mobile : <h:inputText value="#{jobseekerController.jobseeker.mobile}" /><br/>   
-            Pass Year : <h:inputText value="#{jobseekerController.jobseeker.passYear}" /><br/>     
-            Detail : <h:inputTextarea value="#{jobseekerController.jobseeker.detail}" /><br/> 
-            Experience : <h:inputText value="#{jobseekerController.jobseeker.experience}" /><br/> 
-            <h:commandButton rendered="#{jobseekerController.jobseeker.id == 0}" action="#{jobseekerController.create}" value="Save"/>
-            <h:commandButton rendered="#{jobseekerController.jobseeker.id != 0}" action="#{jobseekerController.update}" value="Edit"/>
+            First Name : <h:inputText value="#{jobseekerController.jobSeeker.firstName}" /><br/> 
+            Last Name : <h:inputText value="#{jobseekerController.jobSeeker.lastName}" /><br/> 
+            Gender : <h:inputText value="#{jobseekerController.jobSeeker.gender}" /><br/>
+            Birth Date : <h:inputText value="#{jobseekerController.jobSeeker.birthDate}" /><br/> 
+            Address : <h:inputText value="#{jobseekerController.jobSeeker.address}" /><br/>   
+            City : <h:inputTextarea value="#{jobseekerController.jobSeeker.city}" /><br/>   
+            Mobile : <h:inputText value="#{jobseekerController.jobSeeker.mobile}" /><br/>   
+            Pass Year : <h:inputText value="#{jobseekerController.jobSeeker.passYear}" /><br/>     
+            Detail : <h:inputTextarea value="#{jobseekerController.jobSeeker.detail}" /><br/> 
+            Experience : <h:inputText value="#{jobseekerController.jobSeeker.experience}" /><br/> 
+            <h:commandButton rendered="#{jobseekerController.jobSeeker.id == 0}" action="#{jobseekerController.create}" value="Save"/>
+            <h:commandButton rendered="#{jobseekerController.jobSeeker.id != 0}" action="#{jobseekerController.update}" value="Edit"/>
         </h:form>
-        
+
         <hr/>
-        
+
         <h:form>
-            <h:dataTable border="1" value="#{jobseekerController.jobseekers}" var="js">
+            <h:dataTable border="1" value="#{jobseekerController.jobSeekers}" var="js">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
-                    #{js.id}
+                        #{js.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">FIRST NAME</f:facet>
-                    #{js.firstname}
+                        #{js.firstname}
                 </h:column>
                 <h:column>
                     <f:facet name="header">LAST NAME</f:facet>
-                    #{js.lastname}
+                        #{js.lastname}
                 </h:column>
                 <h:column>
                     <f:facet name="header">GENDER</f:facet>
-                    #{js.gender}
+                        #{js.gender}
                 </h:column>
                 <h:column>
                     <f:facet name="header">BIRTH DATE</f:facet>
-                    #{js.birthDate}
+                        #{js.birthDate}
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADDRESS</f:facet>
-                    #{js.address}
+                        #{js.address}
                 </h:column>
                 <h:column>
                     <f:facet name="header">CITY</f:facet>
-                    #{js.city}
+                        #{js.city}
                 </h:column>
                 <h:column>
                     <f:facet name="header">DEGREE ID</f:facet>
-                    #{js.degree.id}
+                        #{js.degree.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">PASS YEAR</f:facet>
-                    #{js.passYear}
+                        #{js.passYear}
                 </h:column>
                 <h:column>
                     <f:facet name="header">DETAIL</f:facet>
-                    #{js.detail}
+                        #{js.detail}
                 </h:column>
                 <h:column>
                     <f:facet name="header">EXPERIENCE</f:facet>
-                    #{js.experience}
+                        #{js.experience}
                 </h:column>
                 <h:column>
                     <f:facet name="header">USER ID</f:facet>
-                    #{js.user.id}
+                        #{js.user.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton action="#{jobseekerController.delete(c)}" value="delete"/>
-                    <h:commandButton action="#{jobseekerController.setJobseeker(c)}" value="edit"/>
+                    <h:commandButton action="#{jobseekerController.delete(js)}" value="delete"/>
+                    <h:commandButton action="#{jobseekerController.setJobSeeker(js)}" value="edit"/>
                 </h:column>
             </h:dataTable>
         </h:form>
-        
+
     </h:body>
 </html>
 

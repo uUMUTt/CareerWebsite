@@ -11,7 +11,7 @@ import entity.JobSeeker;
  *
  * @author kopuk
  */
-@Named(value = "jobSeekerController")
+@Named(value = "jobseekerController")
 @SessionScoped
 public class JobSeekerController implements Serializable {
     
