@@ -6,6 +6,7 @@ import entity.Company;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,11 +17,19 @@ import java.util.List;
 @SessionScoped
 public class CompanyController implements Serializable {
 
-    private CompanyDAO companyDAO;
+    private CompanyDAO companyDAO;  
     private Company company;
     private List<Company> companies;
+    private int id;
     
     public CompanyController() {
+        this.id = -1;
+    }
+    
+    
+    public String listAll() {
+        this.id = -1;
+        return "company";
     }
     
     public String create(){
@@ -37,6 +46,22 @@ public class CompanyController implements Serializable {
     public String update() {
         companyDAO.update(company);
         company = new Company();
+        return "company";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
+    
+    public String readByID() {
+        this.companies = new ArrayList<>();
+        this.companies.add(this.getCompanyDAO().readByID(this.id));
         return "company";
     }
 
@@ -63,7 +88,10 @@ public class CompanyController implements Serializable {
     }
 
     public List<Company> getCompanies() {
-        this.companies = this.getCompanyDAO().readAll();
+        if(this.id == -1){
+           this.companies = this.getCompanyDAO().readAll(); 
+           this.id = -1;
+        }
         return companies;
     }
 

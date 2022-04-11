@@ -17,6 +17,16 @@
             <h:commandButton rendered="#{companyTypeController.companyType.id == 0}" action="#{companyTypeController.create}" value="Save"/>
             <h:commandButton rendered="#{companyTypeController.companyType.id != 0}" action="#{companyTypeController.update}" value="Edit"/>
         </h:form>
+        
+        <hr/>
+        
+        <h:form>
+            Find By ID : <h:inputText  value="#{companyTypeController.id}" /><br/> 
+            <h:commandButton action="#{companyTypeController.readByID}" value="Search"/>
+            <h:commandButton action="#{companyTypeController.listAll}" value="List All"/>
+        </h:form>
+        
+        <hr/>
        
         <h:form>
             <h:dataTable value="#{companyTypeController.companyTypes}" var="companyType">

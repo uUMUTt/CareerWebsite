@@ -38,6 +38,14 @@
         <hr/>
         
         <h:form>
+            Find By ID : <h:inputText  value="#{companyController.id}" /><br/> 
+            <h:commandButton action="#{companyController.readByID}" value="Search"/>
+            <h:commandButton action="#{companyController.listAll}" value="List All"/>
+        </h:form>
+        
+        <hr/>
+        
+        <h:form>
             <h:dataTable border="1" value="#{companyController.companies}" var="c">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
