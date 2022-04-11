@@ -68,7 +68,7 @@ public class JobSeekerDAO extends SuperDAO<JobSeeker> {
     public String createQueryInsert(JobSeeker t) {
         return "insert into JobSeeker (firstname,lastname,gender,birthdate,address,city,mobile,degreeid,passyear,detail,experience,userid) "
                 + "values ('" + t.getFirstName() + "' , '" + t.getLastName() + "' , '" + t.getGender() + "' , '" + t.getBirthDate() + "' , "
-                + "'" + t.getAddress() + "' , '" + t.getCity() + "' ,'"
+                + "'" + t.getAddress() + "' , '" + t.getCity() + "' ,"
                 + "'" + t.getMobile() + "' , '" + t.getDegree().getId() + "' , '" + t.getPassYear() + "' , '" + t.getDetail() + "' ,"
                 + " '" + t.getExperience() + "' , '" + t.getUser().getId() + "')";
     }
