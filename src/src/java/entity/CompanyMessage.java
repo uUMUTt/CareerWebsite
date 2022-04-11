@@ -14,7 +14,7 @@ public class CompanyMessage extends Message {
     public CompanyMessage() {
     }
 
-    public CompanyMessage(Company from, JobSeeker to, int id, String subject, String text, Date date) {
+    public CompanyMessage(Company from, JobSeeker to, int id, String subject, String text, String date) {
         super(id, subject, text, date);
         this.from = from;
         this.to = to;

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Home Page</title>
         <style>
             .size  {
                 background-color: #4CAF50;
@@ -17,23 +17,24 @@
                 margin: 4px 2px;
                 cursor: pointer;
             }
-            
-            .panel1 {
-                
-            }
+           
         </style>
     </h:head>
     <h:body>
         <h1 class="panel1">Panels</h1>
         <h:form>
             
-            <h:commandButton class="size" action="/Panel/job" value="Job Panel"/>
+            <h:commandButton class="size"  action="/Panel/job" value="Job Panel"/>
             <h:commandButton class="size" action="/Panel/degree" value="Degree Panel"/>
             <h:commandButton class="size" action="/Panel/company_type" value="Company Type Panel"/>
             <h:commandButton class="size" action="/Panel/user" value="User Panel"/>
             <h:commandButton class="size" action="/Panel/skill" value="Skill Panel"/>
             <h:commandButton class="size" action="/Panel/company" value="Company Panel"/>
             <h:commandButton class="size" action="/Panel/jobseeker" value="Jobseeker Panel"/>
+            <h:commandButton class="size" action="/Panel/jobseekermessage" value="Job Message Panel"/>
+            <h:commandButton class="size" action="/Panel/companymessage" value="Company Message Panel"/>
+            <h:commandButton class="size" action="/Panel/jobseeker_contactus_message" value="Jobseeker Contact Us Panel"/>
+            <h:commandButton class="size" action="/Panel/company_contactus_message" value="Company Contact US Panel"/>
 
         </h:form>
 

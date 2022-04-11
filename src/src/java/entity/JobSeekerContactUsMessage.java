@@ -15,7 +15,7 @@ public class JobSeekerContactUsMessage extends Message{
     public JobSeekerContactUsMessage() {
     }
 
-    public JobSeekerContactUsMessage(JobSeeker from, int id, String subject, String text, Date date) {
+    public JobSeekerContactUsMessage(JobSeeker from, int id, String subject, String text, String date) {
         super(id, subject, text, date);
         this.from = from;
     }
