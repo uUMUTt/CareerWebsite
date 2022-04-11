@@ -5,96 +5,132 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Company Table</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+
+        <style>
+            #baslik {
+                background-color: #055160;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+            
+            #alt-baslik {
+                background-color: #b02a37;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        </style>
     </h:head>
     <h:body>
-        <h1>Company Table</h1>
-        <h:form>
-            <h:commandButton action="/index" value="Home"/>
-        </h:form>
-        
-        <hr/>
-        
-        <h:form>
-            
-            Company Types : 
-            <h:selectOneMenu value="#{companyController.company.companyType}" converter="companyTypeConverter">
-                <f:selectItems value="#{companyTypeController.companyTypes}" var="companyType" itemValue="#{companyType}" itemLabel="#{companyType.title}"/>
-            </h:selectOneMenu><br/>
-            Users :     
-            <h:selectOneMenu value="#{companyController.company.user}" converter="userConverter">
-                <f:selectItems value="#{userController.users}" var="user" itemValue="#{user}" itemLabel="#{user.mail}"/>
-            </h:selectOneMenu><br/>
-            Company Name : <h:inputText value="#{companyController.company.companyName}" /><br/>   
-            Address : <h:inputText value="#{companyController.company.address}" /><br/>   
-            City : <h:inputTextarea value="#{companyController.company.city}" /><br/>   
-            Person Name : <h:inputText value="#{companyController.company.contactPersonName}" /><br/>   
-            Person Last Name : <h:inputText value="#{companyController.company.contactPersonLastname}" /><br/>   
-            Mobile : <h:inputText value="#{companyController.company.mobile}" /><br/>   
-            Detail : <h:inputTextarea value="#{companyController.company.detail}" /><br/>   
-            <h:commandButton rendered="#{companyController.company.id == 0}" action="#{companyController.create}" value="Save"/>
-            <h:commandButton rendered="#{companyController.company.id != 0}" action="#{companyController.update}" value="Edit"/>
-        </h:form>
-        
-        <hr/>
-        
-        <h:form>
-            Find By ID : <h:inputText  value="#{companyController.id}" /><br/> 
-            <h:commandButton action="#{companyController.readByID}" value="Search"/>
-            <h:commandButton action="#{companyController.listAll}" value="List All"/>
-        </h:form>
-        
-        <hr/>
-        
-        <h:form>
-            <h:dataTable border="1" value="#{companyController.companies}" var="c">
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                    #{c.id}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">COMPANY NAME</f:facet>
-                    #{c.companyName}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">USER MAIL</f:facet>
-                    #{c.user.mail}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">COMPANY TYPE</f:facet>
-                    #{c.companyType.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">ADDRESS</f:facet>
-                    #{c.address}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">CITY</f:facet>
-                    #{c.city}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">PERSON NAME</f:facet>
-                    #{c.contactPersonName}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">PERSON LAST NAME</f:facet>
-                    #{c.contactPersonLastname}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">MOBILE</f:facet>
-                    #{c.mobile}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">DETAIL</f:facet>
-                    #{c.detail}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton action="#{companyController.delete(c)}" value="delete"/>
-                    <h:commandButton action="#{companyController.setCompany(c)}" value="edit"/>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-        
+        <div class="container mt-5">
+            <h1 id="baslik">CAREER WEBSITES</h1>
+            <h1 id="alt-baslik">Company Table</h1>
+            <h:form>
+                <h:commandButton styleClass="btn btn-warning" action="/index" value="HOME"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+
+                <div class="mb-3">
+                    <label class="form-label"> Company Types : </label>
+                    <h:selectOneMenu styleClass="form-control" value="#{companyController.company.companyType}" converter="companyTypeConverter">
+                        <f:selectItems value="#{companyTypeController.companyTypes}" var="companyType" itemValue="#{companyType}" itemLabel="#{companyType.title}"/>
+                    </h:selectOneMenu><br/>
+
+                    <label class="form-label"> Users : </label>
+                    <h:selectOneMenu styleClass="form-control" value="#{companyController.company.user}" converter="userConverter">
+                        <f:selectItems value="#{userController.users}" var="user" itemValue="#{user}" itemLabel="#{user.mail}"/>
+                    </h:selectOneMenu><br/>
+
+                    <label class="form-label"> Company Name : </label>
+                    <h:inputText styleClass="form-control" value="#{companyController.company.companyName}" /><br/>   
+                    <label class="form-label"> Address : </label>
+                    <h:inputText styleClass="form-control" value="#{companyController.company.address}" /><br/> 
+                    <label class="form-label"> City : </label>
+                    <h:inputText styleClass="form-control" value="#{companyController.company.city}" /><br/> 
+                    <label class="form-label"> Person Name : </label>
+                    <h:inputText styleClass="form-control" value="#{companyController.company.contactPersonName}" /><br/> 
+                    <label class="form-label"> Person Last Name : </label>
+                    <h:inputText styleClass="form-control" value="#{companyController.company.contactPersonLastname}" /><br/> 
+                    <label class="form-label"> Mobile : </label>
+                    <h:inputText styleClass="form-control" value="#{companyController.company.mobile}" /><br/> 
+                    <label class="form-label"> Detail : </label>
+                    <h:inputText styleClass="form-control" value="#{companyController.company.detail}" /> 
+                </div>
+
+                <h:commandButton styleClass="btn btn-success" rendered="#{companyController.company.id == 0}" action="#{companyController.create}" value="Save"/>
+                <h:commandButton styleClass="btn btn-primary" rendered="#{companyController.company.id != 0}" action="#{companyController.update}" value="Edit"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                Find By ID : <h:inputText  value="#{companyController.id}" /><br/> <br/> 
+                <h:commandButton styleClass="btn btn-info" action="#{companyController.readByID}" value="Search"/>
+                <h:commandButton styleClass="btn btn-secondary" action="#{companyController.listAll}" value="List All"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                <h:dataTable styleClass="table table-striped table-hover" border="1" value="#{companyController.companies}" var="c">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{c.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">COMPANY NAME</f:facet>
+                            #{c.companyName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">USER MAIL</f:facet>
+                            #{c.user.mail}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">COMPANY TYPE</f:facet>
+                            #{c.companyType.title}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ADDRESS</f:facet>
+                            #{c.address}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">CITY</f:facet>
+                            #{c.city}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">PERSON NAME</f:facet>
+                            #{c.contactPersonName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">PERSON LAST NAME</f:facet>
+                            #{c.contactPersonLastname}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">MOBILE</f:facet>
+                            #{c.mobile}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">DETAIL</f:facet>
+                            #{c.detail}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ADMINISTRATION</f:facet>
+                        <h:commandButton styleClass="btn btn-danger" action="#{companyController.delete(c)}" value="Delete"/>
+                        <h:commandButton styleClass="btn btn-primary" action="#{companyController.setCompany(c)}" value="Edit"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

@@ -5,45 +5,73 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Skill Table</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <style>
+            #baslik {
+                background-color: #055160;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            #alt-baslik {
+                background-color: #b02a37;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        </style>
     </h:head>
-    <h1>Skill Table</h1>
+
     <h:body>
-        <h:form>
-            <h:commandButton action="/index" value="HOME"/>
-        </h:form>
-        <hr/>
-        <h:form>
-            Title : <h:inputText value="#{skillController.skill.title}" />
-            <h:commandButton rendered="#{skillController.skill.id == 0}" action="#{skillController.create}" value="Save"/>
-            <h:commandButton rendered="#{skillController.skill.id != 0}" action="#{skillController.update}" value="Edit"/>
-        </h:form>
-       
-        <h:form>
-            Find By ID : <h:inputText  value="#{skillController.id}" /><br/> 
-            <h:commandButton action="#{skillController.readByID}" value="Search"/>
-            <h:commandButton action="#{skillController.listAll}" value="List All"/>
-        </h:form>
-        
-        <hr/>
-        
-        <h:form>
-            <h:dataTable value="#{skillController.skills}" var="skill">
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                    #{skill.id}
-                </h:column>
-               
-                <h:column>
-                    <f:facet name="header">TITLE</f:facet>
-                    #{skill.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton action="#{skillController.delete(skill)}" value="delete"/>
-                    <h:commandButton action="#{skillController.setSkill(skill)}" value="edit"/>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-       
+        <div class="container mt-5">
+            <h1 id="baslik">CAREER WEBSITES</h1>
+            <h1 id="alt-baslik">Skill Table</h1>
+            <h:form>
+                <h:commandButton styleClass="btn btn-warning" action="/index" value="HOME"/>
+            </h:form>
+            <hr/>
+            <h:form>
+                <div class="mb-3">
+                    <label class="form-label">  Title : </label>
+                    <h:inputText styleClass="form-control" value="#{skillController.skill.title}" />
+                </div>
+
+                <h:commandButton styleClass="btn btn-success" rendered="#{skillController.skill.id == 0}" action="#{skillController.create}" value="Save"/>
+                <h:commandButton styleClass="btn btn-primary" rendered="#{skillController.skill.id != 0}" action="#{skillController.update}" value="Edit"/>
+            </h:form>
+
+            <h:form>
+                Find By ID : <h:inputText  value="#{skillController.id}" /><br/><br/>  
+                <h:commandButton styleClass="btn btn-info" action="#{skillController.readByID}" value="Search"/>
+                <h:commandButton styleClass="btn btn-secondary" action="#{skillController.listAll}" value="List All"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                <h:dataTable styleClass="table table-striped table-hover" value="#{skillController.skills}" var="skill">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{skill.id}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">TITLE</f:facet>
+                            #{skill.title}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ADMINISTRATION</f:facet>
+                        <h:commandButton styleClass="btn btn-danger" action="#{skillController.delete(skill)}" value="Delete"/>
+                        <h:commandButton styleClass="btn btn-primary" action="#{skillController.setSkill(skill)}" value="Edit"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
     </h:body>
 </html>

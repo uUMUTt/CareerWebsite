@@ -5,47 +5,75 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Company Type</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <style>
+            #baslik {
+                background-color: #055160;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            #alt-baslik {
+                background-color: #b02a37;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        </style>
     </h:head>
-    <h1>Company Type</h1>
+
     <h:body>
-        <h:form>
-            <h:commandButton action="/index" value="HOME"/>
-        </h:form>
-        <hr/>
-        <h:form>
-            Title : <h:inputText value="#{companyTypeController.companyType.title}" />
-            <h:commandButton rendered="#{companyTypeController.companyType.id == 0}" action="#{companyTypeController.create}" value="Save"/>
-            <h:commandButton rendered="#{companyTypeController.companyType.id != 0}" action="#{companyTypeController.update}" value="Edit"/>
-        </h:form>
-        
-        <hr/>
-        
-        <h:form>
-            Find By ID : <h:inputText  value="#{companyTypeController.id}" /><br/> 
-            <h:commandButton action="#{companyTypeController.readByID}" value="Search"/>
-            <h:commandButton action="#{companyTypeController.listAll}" value="List All"/>
-        </h:form>
-        
-        <hr/>
-       
-        <h:form>
-            <h:dataTable value="#{companyTypeController.companyTypes}" var="companyType">
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                    #{companyType.id}
-                </h:column>
-               
-                <h:column>
-                    <f:facet name="header">TITLE</f:facet>
-                    #{companyType.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton action="#{companyTypeController.delete(companyType)}" value="delete"/>
-                    <h:commandButton action="#{companyTypeController.setCompanyType(companyType)}" value="edit"/>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-       
+        <div class="container mt-5">
+            <h1 id="baslik">CAREER WEBSITES</h1>
+            <h1 id="alt-baslik">Company Type</h1>
+            <h:form>
+                <h:commandButton styleClass="btn btn-warning" action="/index" value="HOME"/>
+            </h:form>
+            <hr/>
+            <h:form>
+                <div class="mb-3">
+                    <label class="form-label"> Title : </label>
+                    <h:inputText styleClass="form-control" value="#{companyTypeController.companyType.title}" />
+                </div>
+
+                <h:commandButton styleClass="btn btn-success" rendered="#{companyTypeController.companyType.id == 0}" action="#{companyTypeController.create}" value="Save"/>
+                <h:commandButton styleClass="btn btn-primary" rendered="#{companyTypeController.companyType.id != 0}" action="#{companyTypeController.update}" value="Edit"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                Find By ID : <h:inputText  value="#{companyTypeController.id}" /><br/> <br/> 
+                <h:commandButton styleClass="btn btn-info" action="#{companyTypeController.readByID}" value="Search"/>
+                <h:commandButton styleClass="btn btn-secondary" action="#{companyTypeController.listAll}" value="List All"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                <h:dataTable styleClass="table table-striped table-hover" value="#{companyTypeController.companyTypes}" var="companyType">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{companyType.id}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">TITLE</f:facet>
+                            #{companyType.title}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ADMINISTRATION</f:facet>
+                        <h:commandButton styleClass="btn btn-danger" action="#{companyTypeController.delete(companyType)}" value="Delete"/>
+                        <h:commandButton styleClass="btn btn-primary" action="#{companyTypeController.setCompanyType(companyType)}" value="Edit"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
     </h:body>
 </html>

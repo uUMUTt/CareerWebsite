@@ -5,77 +5,107 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Job</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <style>
+            #baslik {
+                background-color: #055160;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            #alt-baslik {
+                background-color: #b02a37;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        </style>
     </h:head>
     <h:body>
-        <h1>Job Table</h1>
-        <h:form>
-            <h:commandButton action="/index" value="Home"/>
-        </h:form>
-        
-        <hr/>
-        
-        <h:form>
-            
-            Degree : 
-            <h:selectOneMenu value="#{jobController.job.degree}" converter="degreeConverter">
-                <f:selectItems value="#{degreeController.degrees}" var="degree" itemValue="#{degree}" itemLabel="#{degree.title}"/>
-            </h:selectOneMenu><br/>
-            Salary : <h:inputText value="#{jobController.job.salary}" /><br/>   
-            Experience : <h:inputText value="#{jobController.job.experience}" /><br/>   
-            Detail : <h:inputTextarea value="#{jobController.job.detail}" /><br/>   
-            Deadline : <h:inputText value="#{jobController.job.deadline}" /><br/>   
-            <h:commandButton rendered="#{jobController.job.id == 0}" action="#{jobController.create}" value="Save"/>
-            <h:commandButton rendered="#{jobController.job.id != 0}" action="#{jobController.update}" value="Edit"/>
-        </h:form>
-        
-        <hr/>
-        
-        <h:form>
-            Find By ID : <h:inputText  value="#{jobController.id}" /><br/> 
-            <h:commandButton action="#{jobController.readByID}" value="Search"/>
-            <h:commandButton action="#{jobController.listAll}" value="List All"/>
-        </h:form>
-        
-        <hr/>
-        
-        <h:form>
-            <h:dataTable border="1" value="#{jobController.jobs}" var="j">
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                    #{j.id}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">DEGREE TITLE</f:facet>
-                    #{j.degree.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">SALARY</f:facet>
-                    #{j.salary}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">EXPERIENCE</f:facet>
-                    #{j.experience}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">DETAIL</f:facet>
-                    #{j.detail}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">DEADLINE</f:facet>
-                    #{j.deadline}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">CREATIONDATE</f:facet>
-                    #{j.creationDate}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton action="#{jobController.delete(j)}" value="delete"/>
-                    <h:commandButton action="#{jobController.setJob(j)}" value="edit"/>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-        
+        <div class="container mt-5">
+            <h1 id="baslik">CAREER WEBSITES</h1>
+            <h1 id="alt-baslik">Job Table</h1>
+            <h:form>
+                <h:commandButton styleClass="btn btn-warning" action="/index" value="HOME"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                <div class="mb-3">
+                    <label class="form-label"> Degree : </label>
+
+                    <h:selectOneMenu styleClass="form-control" value="#{jobController.job.degree}" converter="degreeConverter">
+                        <f:selectItems value="#{degreeController.degrees}" var="degree" itemValue="#{degree}" itemLabel="#{degree.title}"/>
+                    </h:selectOneMenu><br/>
+                    <label class="form-label"> Salary : </label>
+                    <h:inputText styleClass="form-control" value="#{jobController.job.salary}" /><br/>   
+                    <label class="form-label"> Experience : </label>
+                     <h:inputText styleClass="form-control" value="#{jobController.job.experience}" /><br/>   
+                    <label class="form-label"> Detail : </label>
+                     <h:inputTextarea styleClass="form-control" value="#{jobController.job.detail}" /><br/>
+                    <label class="form-label"> Deadline : </label>
+                     <h:inputText styleClass="form-control" value="#{jobController.job.deadline}" /> 
+                </div>
+
+                <h:commandButton styleClass="btn btn-success" rendered="#{jobController.job.id == 0}" action="#{jobController.create}" value="Save"/>
+                <h:commandButton styleClass="btn btn-primary" rendered="#{jobController.job.id != 0}" action="#{jobController.update}" value="Edit"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                Find By ID : <h:inputText  value="#{jobController.id}" /><br/> <br/> 
+                <h:commandButton styleClass="btn btn-info" action="#{jobController.readByID}" value="Search"/>
+                <h:commandButton styleClass="btn btn-secondary" action="#{jobController.listAll}" value="List All"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                <h:dataTable styleClass="table table-striped table-hover" border="1" value="#{jobController.jobs}" var="j">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{j.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">DEGREE TITLE</f:facet>
+                            #{j.degree.title}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">SALARY</f:facet>
+                            #{j.salary}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">EXPERIENCE</f:facet>
+                            #{j.experience}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">DETAIL</f:facet>
+                            #{j.detail}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">DEADLINE</f:facet>
+                            #{j.deadline}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">CREATIONDATE</f:facet>
+                            #{j.creationDate}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ADMINISTRATION</f:facet>
+                        <h:commandButton styleClass="btn btn-danger" action="#{jobController.delete(j)}" value="Delete"/>
+                        <h:commandButton styleClass="btn btn-primary" action="#{jobController.setJob(j)}" value="Edit"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

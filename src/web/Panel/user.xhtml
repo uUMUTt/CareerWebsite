@@ -5,50 +5,79 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>User</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <style>
+            #baslik {
+                background-color: #055160;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            #alt-baslik {
+                background-color: #b02a37;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        </style>
     </h:head>
-    <h1>User Table</h1>
+
     <h:body>
-        <h:form>
-            <h:commandButton action="/index" value="HOME"/>
-        </h:form>
-        <hr/>
-        <h:form>
-            Mail : <h:inputText value="#{userController.user.mail}" /><br/>
-            Password : <h:inputText value="#{userController.user.password}" /><br/>
-            <h:commandButton rendered="#{userController.user.id == 0}" action="#{userController.create}" value="Save"/>
-            <h:commandButton rendered="#{userController.user.id != 0}" action="#{userController.update}" value="Edit"/>
-        </h:form>
-       
-        <h:form>
-            Find By ID : <h:inputText  value="#{userController.id}" /><br/> 
-            <h:commandButton action="#{userController.readByID}" value="Search"/>
-            <h:commandButton action="#{userController.listAll}" value="List All"/>
-        </h:form>
-        
-        <hr/>
-        
-        <h:form>
-            <h:dataTable value="#{userController.users}" var="user">
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                    #{user.id}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">MAIL</f:facet>
-                    #{user.mail}
-                </h:column>
-               
-                <h:column>
-                    <f:facet name="header">PASSWORD</f:facet>
-                    #{user.password}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton action="#{userController.delete(user)}" value="delete"/>
-                    <h:commandButton action="#{userController.setUser(user)}" value="edit"/>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-       
+        <div class="container mt-5">
+            <h1 id="baslik">CAREER WEBSITES</h1>
+            <h1 id="alt-baslik">User Table</h1>
+            <h:form>
+                <h:commandButton styleClass="btn btn-warning" action="/index" value="HOME"/>
+            </h:form>
+            <hr/>
+            <h:form>
+                <div class="mb-3">
+                    <label class="form-label"> User : </label>
+                    <h:inputText styleClass="form-control" value="#{userController.user.mail}" /><br/>
+                    <label class="form-label"> Password : </label>
+                    <h:inputText styleClass="form-control" value="#{userController.user.password}" />
+                </div>
+
+                <h:commandButton styleClass="btn btn-success" rendered="#{userController.user.id == 0}" action="#{userController.create}" value="Save"/>
+                <h:commandButton styleClass="btn btn-primary" rendered="#{userController.user.id != 0}" action="#{userController.update}" value="Edit"/>
+            </h:form>
+
+            <h:form>
+                Find By ID : <h:inputText  value="#{userController.id}" /><br/> <br/> 
+                <h:commandButton styleClass="btn btn-info" action="#{userController.readByID}" value="Search"/>
+                <h:commandButton styleClass="btn btn-secondary" action="#{userController.listAll}" value="List All"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                <h:dataTable styleClass="table table-striped table-hover" value="#{userController.users}" var="user">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{user.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">MAIL</f:facet>
+                            #{user.mail}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">PASSWORD</f:facet>
+                            #{user.password}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ADMINISTRATION</f:facet>
+                        <h:commandButton styleClass="btn btn-danger" action="#{userController.delete(user)}" value="Delete"/>
+                        <h:commandButton styleClass="btn btn-primary" action="#{userController.setUser(user)}" value="Edit"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
     </h:body>
 </html>

@@ -5,48 +5,76 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Degree</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <style>
+            #baslik {
+                background-color: #055160;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            #alt-baslik {
+                background-color: #b02a37;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        </style>
     </h:head>
-    <h1>Degree</h1>
+
     <h:body>
-        <h:form>
-            <h:commandButton action="/index" value="HOME"/>
-        </h:form>
-        <hr/>
-        <h:form>
-            Title : <h:inputText value="#{degreeController.degree.title}" />
-            <h:commandButton rendered="#{degreeController.degree.id == 0}" action="#{degreeController.create}" value="Save"/>
-            <h:commandButton rendered="#{degreeController.degree.id != 0}" action="#{degreeController.update}" value="Edit"/>
-        </h:form>
-       
-        <hr/>
-        
-        <h:form>
-            Find By ID : <h:inputText  value="#{degreeController.id}" /><br/> 
-            <h:commandButton action="#{degreeController.readByID}" value="Search"/>
-            <h:commandButton action="#{degreeController.listAll}" value="List All"/>
-        </h:form>
-        
-        <hr/>
-        
-        
-        <h:form>
-            <h:dataTable value="#{degreeController.degrees}" var="degree">
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                    #{degree.id}
-                </h:column>
-               
-                <h:column>
-                    <f:facet name="header">TITLE</f:facet>
-                    #{degree.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton action="#{degreeController.delete(degree)}" value="delete"/>
-                    <h:commandButton action="#{degreeController.setDegree(degree)}" value="edit"/>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-       
+        <div class="container mt-5">
+            <h1 id="baslik">CAREER WEBSITES</h1>
+            <h1 id="alt-baslik">Degree</h1>
+            <h:form>
+                <h:commandButton styleClass="btn btn-warning" action="/index" value="HOME"/>
+            </h:form>
+            <hr/>
+            <h:form>
+                <div class="mb-3">
+                    <label class="form-label"> Title : </label>
+                    <h:inputText styleClass="form-control" value="#{degreeController.degree.title}" />
+                </div>
+
+                <h:commandButton styleClass="btn btn-success" rendered="#{degreeController.degree.id == 0}" action="#{degreeController.create}" value="Save"/>
+                <h:commandButton styleClass="btn btn-primary" rendered="#{degreeController.degree.id != 0}" action="#{degreeController.update}" value="Edit"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                Find By ID : <h:inputText  value="#{degreeController.id}" /><br/> <br/> 
+                <h:commandButton styleClass="btn btn-info" action="#{degreeController.readByID}" value="Search"/>
+                <h:commandButton styleClass="btn btn-secondary" action="#{degreeController.listAll}" value="List All"/>
+            </h:form>
+
+            <hr/>
+
+
+            <h:form>
+                <h:dataTable styleClass="table table-striped table-hover" value="#{degreeController.degrees}" var="degree">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{degree.id}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">TITLE</f:facet>
+                            #{degree.title}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ADMINISTRATION</f:facet>
+                        <h:commandButton styleClass="btn btn-danger" action="#{degreeController.delete(degree)}" value="Delete"/>
+                        <h:commandButton styleClass="btn btn-primary" action="#{degreeController.setDegree(degree)}" value="Edit"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
     </h:body>
 </html>
