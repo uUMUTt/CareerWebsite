@@ -1,11 +1,103 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Facelet Title</title>
-    </head>
-    <body>
-        Hello from Facelets
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Job</title>
+    </h:head>
+    <h:body>
+        <h1>Job Table</h1>
+        <h:form>
+            <h:commandButton action="/index" value="Home"/>
+        </h:form>
+        
+        <hr/>
+        
+        <h:form>
+            
+            Job Seeker: 
+            <h:selectOneMenu value="#{jobseekerController.jobseeker.degree}" converter="degreeConverter">
+                <f:selectItems value="#{degreeController.degree}" var="degree" itemValue="#{degree}" itemLabel="#{degree.title}"/>
+            </h:selectOneMenu><br/>
+            Users : 
+            <h:selectOneMenu value="#{jobseekerController.jobseeker.user}" converter="userConverter">
+                <f:selectItems value="#{userController.users}" var="user" itemValue="#{user}" itemLabel="#{user.mail}"/>
+            </h:selectOneMenu><br/>
+            First Name : <h:inputText value="#{jobseekerController.jobseeker.firstName}" /><br/> 
+            Last Name : <h:inputText value="#{jobseekerController.jobseeker.lastName}" /><br/> 
+            Gender : <h:inputText value="#{jobseekerController.jobseeker.gender}" /><br/>
+            Birth Date : <h:inputText value="#{jobseekerController.jobseeker.birthDate}" /><br/> 
+            Address : <h:inputText value="#{jobseekerController.jobseeker.address}" /><br/>   
+            City : <h:inputTextarea value="#{jobseekerController.jobseeker.city}" /><br/>   
+            Mobile : <h:inputText value="#{jobseekerController.jobseeker.mobile}" /><br/>   
+            Pass Year : <h:inputText value="#{jobseekerController.jobseeker.passYear}" /><br/>     
+            Detail : <h:inputTextarea value="#{jobseekerController.jobseeker.detail}" /><br/> 
+            Experience : <h:inputText value="#{jobseekerController.jobseeker.experience}" /><br/> 
+            <h:commandButton rendered="#{jobseekerController.jobseeker.id == 0}" action="#{jobseekerController.create}" value="Save"/>
+            <h:commandButton rendered="#{jobseekerController.jobseeker.id != 0}" action="#{jobseekerController.update}" value="Edit"/>
+        </h:form>
+        
+        <hr/>
+        
+        <h:form>
+            <h:dataTable border="1" value="#{jobseekerController.jobseekers}" var="js">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    #{js.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">FIRST NAME</f:facet>
+                    #{js.firstname}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">LAST NAME</f:facet>
+                    #{js.lastname}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">GENDER</f:facet>
+                    #{js.gender}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">BIRTH DATE</f:facet>
+                    #{js.birthDate}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADDRESS</f:facet>
+                    #{js.address}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">CITY</f:facet>
+                    #{js.city}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DEGREE ID</f:facet>
+                    #{js.degree.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">PASS YEAR</f:facet>
+                    #{js.passYear}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DETAIL</f:facet>
+                    #{js.detail}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">EXPERIENCE</f:facet>
+                    #{js.experience}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">USER ID</f:facet>
+                    #{js.user.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADMINISTRATION</f:facet>
+                    <h:commandButton action="#{jobseekerController.delete(c)}" value="delete"/>
+                    <h:commandButton action="#{jobseekerController.setJobseeker(c)}" value="edit"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        
+    </h:body>
 </html>
 
