@@ -82,7 +82,7 @@ public class PrivilegesDAO extends DBConnection {
 
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from systemgroup limit " + numOfRowOnPage + " offset " + offset + "";
+            String query = "select * from privileges limit " + numOfRowOnPage + " offset " + offset + "";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
