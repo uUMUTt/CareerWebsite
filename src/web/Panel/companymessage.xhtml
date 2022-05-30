@@ -9,7 +9,7 @@
     <h:body>
         <h1>Company Message Table</h1>
         <h:form>
-            <h:commandButton action="/index" value="Home"/>
+            <h:commandButton action="/Panel/panel" value="Home"/>
         </h:form>
 
         <hr/>
@@ -48,11 +48,11 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">SUBJECT</f:facet>
-                        #{cm.gender}
+                        #{cm.subject}
                 </h:column>
                 <h:column>
                     <f:facet name="header">CONTENT</f:facet>
-                        #{cm.birthDate}
+                        #{cm.text}
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADMINISTRATION</f:facet>

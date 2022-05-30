@@ -1,11 +1,67 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Facelet Title</title>
-    </head>
-    <body>
-        Hello from Facelets
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Job Seeker Message Table</title>
+    </h:head>
+    <h:body>
+        <h1>Job Seeker Message Table</h1>
+        <h:form>
+            <h:commandButton action="/Panel/panel" value="Home"/>
+        </h:form>
+
+        <hr/>
+
+        <h:form>
+
+            From(Job Seeker): 
+            <h:selectOneMenu value="#{jobSeekerMessageController.jobSeekerMessage.from}" converter="jobSeekerConverter">
+                <f:selectItems value="#{jobseekerController.jobSeekers}" var="jobseeker" itemValue="#{jobseeker}" itemLabel="#{jobseeker.user.mail}"/>
+            </h:selectOneMenu><br/>
+            To(Company) : 
+            <h:selectOneMenu value="#{jobSeekerMessageController.jobSeekerMessage.to}" converter="companyConverter">
+                <f:selectItems value="#{companyController.companies}" var="company" itemValue="#{company}" itemLabel="#{company.companyName}"/>
+            </h:selectOneMenu><br/>
+            Subject : <h:inputText value="#{jobSeekerMessageController.jobSeekerMessage.subject}" /><br/> 
+            Content : <h:inputTextarea value="#{jobSeekerMessageController.jobSeekerMessage.text}" /><br/> 
+            <h:commandButton rendered="#{jobSeekerMessageController.jobSeekerMessage.id == 0}" action="#{jobSeekerMessageController.create}" value="Save"/>
+            <h:commandButton rendered="#{jobSeekerMessageController.jobSeekerMessage.id != 0}" action="#{jobSeekerMessageController.update}" value="Edit"/>
+        </h:form>
+
+        <hr/>
+
+        <h:form>
+            <h:dataTable border="1" value="#{jobSeekerMessageController.jobSeekerMessages}" var="cm">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{jm.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">FROM COMPANY NAME</f:facet>
+                        #{jm.companyMessage.from.companyName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">TO JOB SEEKER</f:facet>
+                        #{jm.companyMessage.to.firstName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">SUBJECT</f:facet>
+                        #{jm.subject}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">CONTENT</f:facet>
+                        #{jm.text}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADMINISTRATION</f:facet>
+                    <h:commandButton action="#{jobSeekerMessageController.delete(jm)}" value="delete"/>
+                    <h:commandButton action="#{jobSeekerMessageController.setJobSeekerMessage(jm)}" value="edit"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+    </h:body>
 </html>
 

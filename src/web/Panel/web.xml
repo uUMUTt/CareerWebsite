@@ -10,7 +10,8 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     
-    <!-- FILTER -->
+    
+     <!-- FILTER -->
     <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>util.LoginFilter</filter-class>

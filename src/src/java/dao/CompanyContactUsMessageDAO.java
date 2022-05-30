@@ -21,7 +21,7 @@ public class CompanyContactUsMessageDAO extends SuperDAO<CompanyContactUsMessage
         CompanyContactUsMessage jm = null;
         try {
             jm = new CompanyContactUsMessage(this.getCompanyDAO().findByID(rs.getInt("from_p")),
-                    rs.getInt("id"), rs.getString("subject"), rs.getString("content"), rs.getDate("date"));
+                    rs.getInt("id"), rs.getString("subject"), rs.getString("content"), rs.getString("date"));
         } catch (Exception e) {
         }
         return jm;

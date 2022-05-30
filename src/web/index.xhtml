@@ -3,43 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Career Website</title>
-
+        <title>Facelet Title</title>
         <h:outputStylesheet library="css" name="bootstrap.min.css" />
-
-        <title>Home Page</title>
-        <style>
-            
-            #baslik {
-                background-color: #055160;
-                color: white;
-                border: 2px solid black;
-                text-align: center;
-                padding-top: 20px;
-                padding-bottom: 20px;
-            }
-        </style>
     </h:head>
     <h:body>
-
-        <div class="container mt-5">
-            <h1 id="baslik">CAREER WEBSITES</h1> 
-        </div>
-
-        <h:body>
-            <h:form>
-                <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1"  action="/Panel/job" value="Job Panel"/>
-                <h:commandButton styleClass="btn btn-success container p-2 m-1" action="/Panel/degree" value="Degree Panel"/>
-                <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1" action="/Panel/company_type" value="Company Type Panel"/>
-                <h:commandButton styleClass="btn btn-success container p-2" action="/Panel/user" value="User Panel"/>
-                <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1" action="/Panel/skill" value="Skill Panel"/>
-                <h:commandButton styleClass="btn btn-success container p-2 m-1" action="/Panel/company" value="Company Panel"/>
-                <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1" action="/Panel/jobseeker" value="Jobseeker Panel"/>
-
-            </h:form>
-
-        </h:body>
+        
+        <!-- XHTML VALIDATION -->
+        <h:form>
+            Email : <h:inputText value="#{sessionBean.email}" required="true" requiredMessage="Username is required"/> <br/>
+            Password : <h:inputText value="#{sessionBean.password}" required="true" requiredMessage="Password is required" validator="#{validationBean.validatePassword}"/> <br/>
+            <h:commandButton action="#{sessionBean.login}" value="Login" />
+        </h:form>
+        
+        <h:messages/>
+        
     </h:body>
-      
 </html>
-

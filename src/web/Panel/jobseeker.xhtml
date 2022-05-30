@@ -32,7 +32,7 @@
             <h1 id="baslik">CAREER WEBSITES</h1>
             <h1 id="alt-baslik">Jobseeker Table</h1>
             <h:form>
-                <h:commandButton styleClass="btn btn-warning" action="/index" value="HOME"/>
+                <h:commandButton styleClass="btn btn-warning" action="/Panel/panel" value="HOME"/>
             </h:form>
 
             <hr/>
@@ -71,6 +71,14 @@
 
                 <h:commandButton styleClass="btn btn-success" rendered="#{jobseekerController.jobSeeker.id == 0}" action="#{jobseekerController.create}" value="Save"/>
                 <h:commandButton styleClass="btn btn-primary" rendered="#{jobseekerController.jobSeeker.id != 0}" action="#{jobseekerController.update}" value="Edit"/>
+            </h:form>
+
+            <hr/>
+
+            <h:form>
+                Find By ID : <h:inputText  value="#{jobseekerController.id}" /><br/> <br/> 
+                <h:commandButton styleClass="btn btn-info" action="#{jobseekerController.readByID}" value="Search"/>
+                <h:commandButton styleClass="btn btn-secondary" action="#{jobseekerController.listAll}" value="List All"/>
             </h:form>
 
             <hr/>

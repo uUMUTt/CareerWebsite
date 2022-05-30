@@ -21,7 +21,7 @@ public class JobSeekerContactUsMessageDAO extends SuperDAO<JobSeekerContactUsMes
         JobSeekerContactUsMessage jm = null;
         try {
             jm = new JobSeekerContactUsMessage(this.getJobSeekerDAO().findByID(rs.getInt("from_p")),
-                    rs.getInt("id"), rs.getString("subject"), rs.getString("content"), rs.getDate("date"));
+                    rs.getInt("id"), rs.getString("subject"), rs.getString("content"), rs.getString("date"));
         } catch (Exception e) {
         }
         return jm;

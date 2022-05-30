@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    </h:head>
+    <h:body>
+
+        <div class="container">
+            
+            <div class="row">
+                <h:form styleClass="my-3">
+                    <h:commandButton styleClass="btn" action="/Panel/panel?faces-redirect=true" value="HOME" />
+                    <h:commandButton styleClass="btn" action="/Panel/systemgroup/systemgroup?faces-redirect=true" value="SYSTEM GROUP" />
+                    <h:commandButton styleClass="btn" action="/Panel/systemuser/systemuser?faces-redirect=true" value="SYSTEM USER" />
+                    <h:commandButton styleClass="btn" action="/Panel/privilege/privilege?faces-redirect=true" value="PRIVILEGES" />
+                </h:form>
+            </div>
+
+            <div class="row">
+
+                <div class="col">
+
+                    <h:form>
+
+                        <div class="mb-3">
+                            <label>Name</label>
+                            <h:inputText value="#{privilegesBean.entity.mname}" styleClass="form-control" />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>System Group</label>
+                            <h:selectOneMenu styleClass="form-select" value="#{privilegesBean.entity.systemGroup}" converter="systemGroupConverter">
+                                <f:selectItems value="#{systemGroupBean.list}" var="g" itemLabel="#{g.groupName}" itemValue="#{g}" />
+                            </h:selectOneMenu>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Create</label>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.icreate}" styleClass="form-check" />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Read</label>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.iread}" styleClass="form-check" />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Update</label>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.iupdate}" styleClass="form-check" />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Delete</label>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.idelete}" styleClass="form-check" />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>List</label>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.ilist}" styleClass="form-check" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Show</label>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.irshow}" styleClass="form-check" />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h:commandButton styleClass="btn btn-success" rendered="#{privilegesBean.entity.id==0}" action="#{privilegesBean.create}" value="Save" />
+                            <h:commandButton styleClass="btn btn-secondary" rendered="#{privilegesBean.entity.id!=0}" action="#{privilegesBean.clearForm}" value="Clear" />
+                            <h:commandButton styleClass="btn btn-primary" rendered="#{privilegesBean.entity.id!=0}" action="#{privilegesBean.update}" value="Update" />
+                            <h:commandButton styleClass="btn btn-danger" rendered="#{privilegesBean.entity.id!=0}" action="#{privilegesBean.delete}" value="Delete" />
+                        </div>
+
+                    </h:form>
+
+                </div>
+
+                <div class="col">
+
+                    <h:form>
+
+                        <table class="table table-striped table-hover">
+
+                            <thead>
+                                <tr>
+
+                                    <th>ID</th>
+                                    <th>MODULE</th>
+                                    <th>GROUP</th>
+                                    <th>CREATE</th>
+                                    <th>READ</th>
+                                    <th>UPDATE</th>
+                                    <th>DELETE</th>
+                                    <th>LIST</th>
+                                    <th>SHOW</th>
+                                    <th>ADMINISTRATION</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <ui:repeat value="#{privilegesBean.list}" var="e">
+                                    <tr>
+
+                                        <td>#{e.id}</td>
+                                        <td>
+                                            <h:commandLink action="#{privilegesBean.setEntity(e)}" value="#{e.mname}" />
+                                        </td>
+                                        <td>#{e.systemGroup.groupName}</td>
+                                        <td>#{e.icreate}</td>
+                                        <td>#{e.iread}</td>
+                                        <td>#{e.iupdate}</td>
+                                        <td>#{e.idelete}</td>
+                                        <td>#{e.ilist}</td>
+                                        <td>#{e.irshow}</td>
+
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody>
+
+                        </table>
+
+                    </h:form>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </h:body>
+</html>
+

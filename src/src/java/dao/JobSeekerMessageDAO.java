@@ -18,7 +18,7 @@ public class JobSeekerMessageDAO extends SuperDAO<JobSeekerMessage> {
         try {
             jm = new JobSeekerMessage(this.getJobSeekerDAO().findByID(rs.getInt("from_p")),
                     this.getCompanyDAO().findByID(rs.getInt("to_p")), rs.getInt("id"), rs.getString("subject"),
-                    rs.getString("content"), rs.getDate("date"));
+                    rs.getString("content"), rs.getString("date"));
         } catch (Exception e) {
         }
         return jm;

@@ -144,3 +144,32 @@ CREATE  TABLE IF NOT EXISTS JobSeekerContactUsMessage(
 )INHERITS (Message);
 
 
+
+
+create table privileges (
+	id serial primary key,
+	pgroup_id int not null,
+	mname varchar(250) not null,
+	icreate boolean not null default false,
+	iread boolean not null default false,
+	iupdate boolean not null default false,
+	idelete boolean not null default false,
+	ilist boolean not null default false,
+	irshow boolean not null default false,
+	foreign key(pgroup_id) references systemgroup(id)
+);
+
+create table systemgroup (
+	id serial primary key,
+	gname varchar(250) unique not null,
+	created timestamp,
+	updated timestamp not null default current_timestamp
+);
+
+create table systemuser (
+	id serial primary key,
+	email varchar(250) unique not null,
+	password varchar(250) not null,
+	ugroup_id int not null,
+	foreign key(ugroup_id) references systemgroup(id)
+);

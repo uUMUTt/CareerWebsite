@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Career Website</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+
+        <title>Home Page</title>
+        <style>
+
+            #baslik {
+                background-color: #055160;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+
+        <div class="container mt-5">
+            <h1 id="baslik">CAREER WEBSITES</h1> 
+
+            <h:body>
+                <h:form>
+                    <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1"  action="/Panel/job?faces-redirect=true" value="Job Panel"/>
+                    <h:commandButton styleClass="btn btn-success container p-2 m-1" action="/Panel/degree?faces-redirect=true" value="Degree Panel"/>
+                    <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1" action="/Panel/company_type?faces-redirect=true" value="Company Type Panel"/>
+                    <h:commandButton styleClass="btn btn-success container p-2" action="/Panel/user?faces-redirect=true" value="User Panel"/>
+                    <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1" action="/Panel/skill?faces-redirect=true" value="Skill Panel"/>
+                    <h:commandButton styleClass="btn btn-success container p-2 m-1" action="/Panel/company?faces-redirect=true" value="Company Panel"/>
+                    <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1" action="/Panel/jobseeker?faces-redirect=true" value="Jobseeker Panel"/>
+                    <h:commandButton styleClass="btn btn-success container p-2 m-1" action="/Panel/companymessage?faces-redirect=true" value="Company Message Panel"/>
+                    <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1" action="/Panel/jobseekermessage?faces-redirect=true" value="Jobseeker Message Panel"/>
+
+                    <h:commandButton styleClass="btn btn-success container  p-2 m-1" action="/Panel/systemuser/systemuser?faces-redirect=true" value="System User Panel"/>
+                    <h:commandButton styleClass="btn btn-success container alert-success p-2 m-1" action="/Panel/systemgroup/systemgroup?faces-redirect=true" value="System Group Panel"/>
+                    <h:commandButton styleClass="btn btn-success container  p-2 m-1" action="/Panel/privilege/privilege?faces-redirect=true" value="Privilege Panel"/>
+
+                    <h:commandButton styleClass="btn btn-danger container  p-2 m-1" action="#{sessionBean.clearForm}" value="LOGOUT"/>
+                </h:form>
+
+            </h:body>
+
+        </div>
+
+
+    </h:body>
+
+</html>
+
