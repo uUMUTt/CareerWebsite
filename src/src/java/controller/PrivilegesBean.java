@@ -57,7 +57,7 @@ public class PrivilegesBean implements Serializable {
     }
 
     public int getPageCount() {
-        int numOfRowOnPage = 5;
+        double numOfRowOnPage = 5;
         List<Privileges> list = this.getDao().readList();
         pageCount = (int) Math.ceil(list.size() / numOfRowOnPage);
         return pageCount;

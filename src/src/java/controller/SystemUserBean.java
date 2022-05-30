@@ -71,7 +71,7 @@ public class SystemUserBean implements Serializable {
     }
 
     public int getPageCount() {
-        int numOfRowOnPage = 5;
+        double numOfRowOnPage = 5.0;
         List<SystemUser> list = this.getDao().readList();
         pageCount = (int) Math.ceil(list.size() / numOfRowOnPage);
         return pageCount;
