@@ -76,6 +76,7 @@ public class SystemGroupDAO extends DBConnection {
 
         return list;
     }
+    
 
     public void create(SystemGroup systemGroup) {
         try {

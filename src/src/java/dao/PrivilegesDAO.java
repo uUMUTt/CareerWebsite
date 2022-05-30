@@ -73,6 +73,37 @@ public class PrivilegesDAO extends DBConnection {
 
         return list;
     }
+    
+    public List<Privileges> readList(int page) {
+        List<Privileges> list = new ArrayList<>();
+        
+        int numOfRowOnPage = 5;
+        int offset = (page - 1) * numOfRowOnPage;
+
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "select * from systemgroup limit " + numOfRowOnPage + " offset " + offset + "";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                list.add(new Privileges(
+                        rs.getLong("id"),
+                        this.getSystemGroupDAO().findSystemGroupById(rs.getLong("pgroup_id")),
+                        rs.getString("mname"),
+                        rs.getBoolean("icreate"),
+                        rs.getBoolean("iread"),
+                        rs.getBoolean("iupdate"),
+                        rs.getBoolean("idelete"),
+                        rs.getBoolean("ilist"),
+                        rs.getBoolean("irshow")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return list;
+    }
 
     public void create(Privileges privileges) {
         try {

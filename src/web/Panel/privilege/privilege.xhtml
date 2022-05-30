@@ -125,6 +125,14 @@
                                     </tr>
                                 </ui:repeat>
                             </tbody>
+                            
+                            <tfoot>
+                                <tr>
+                                    <h3>Page :#{privilegesBean.page} / #{privilegesBean.pageCount}</h3>
+                                    <h:commandButton styleClass="btn btn-sm btn-success" action="#{privilegesBean.previousPage}" value="previous" />
+                                    <h:commandButton styleClass="btn btn-sm btn-success" action="#{privilegesBean.nextPage}" value="next" />
+                                </tr>
+                            </tfoot>
 
                         </table>
 

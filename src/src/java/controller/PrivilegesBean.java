@@ -7,6 +7,7 @@ package controller;
 import dao.PrivilegesDAO;
 import entity.Privileges;
 import entity.SystemGroup;
+import entity.SystemUser;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -26,6 +27,11 @@ public class PrivilegesBean implements Serializable {
     private Privileges entity;
     private List<Privileges> list;
     private PrivilegesDAO dao;
+    
+    //PAGINATION ATTRIBUTES
+    private int page = 1;
+    private int pageCount;
+    //*************************
 
     public PrivilegesBean() {
     }
@@ -33,6 +39,43 @@ public class PrivilegesBean implements Serializable {
     public Privileges getPrivileges(SystemGroup systemGroup, String module) {
         return this.getDao().getGroupPrivileges(systemGroup, module);
     }
+    
+     //FOR PAGINATION
+
+    public void nextPage() {
+        page++;
+        if (page > pageCount) {
+            page = pageCount;
+        }
+    }
+
+    public void previousPage() {
+        page--;
+        if (page < 1) {
+            page = 1;
+        }
+    }
+
+    public int getPageCount() {
+        int numOfRowOnPage = 5;
+        List<Privileges> list = this.getDao().readList();
+        pageCount = (int) Math.ceil(list.size() / numOfRowOnPage);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+    
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+    
+    //********************************************
 
     public void clearForm() {
         entity = new Privileges();
@@ -65,7 +108,7 @@ public class PrivilegesBean implements Serializable {
     }
 
     public List<Privileges> getList() {
-        list = this.getDao().readList();
+        list = this.getDao().readList(page);
         return list;
     }
 
