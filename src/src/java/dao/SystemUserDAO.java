@@ -55,6 +55,29 @@ public class SystemUserDAO extends DBConnection {
 
         return list;
     }
+    
+    //PAGINATION
+    public List<SystemUser> readList(int page) {
+        List<SystemUser> list = new ArrayList<>();
+        
+        int numOfRowOnPage = 5;
+        int offset = (page - 1) * numOfRowOnPage;
+        
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "select * from systemuser limit " + numOfRowOnPage + " offset " + offset + "";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                SystemGroup sg = this.getSystemGroupDAO().findSystemGroupById(rs.getLong("id"));
+                list.add(new SystemUser(rs.getLong("id"), rs.getString("email"), rs.getString("password"), sg));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return list;
+    }
 
     public void create(SystemUser systemUser) {
         try {

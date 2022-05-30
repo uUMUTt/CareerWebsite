@@ -90,6 +90,14 @@
                                     </tr>
                                 </ui:repeat>
                             </tbody>
+                            
+                            <tfoot>
+                                <tr>
+                                    <h3>Page :#{systemUserBean.page} / #{systemUserBean.pageCount}</h3>
+                                    <h:commandButton styleClass="btn btn-sm btn-success" action="#{systemUserBean.previousPage}" value="previous" />
+                                    <h:commandButton styleClass="btn btn-sm btn-success" action="#{systemUserBean.nextPage}" value="next" />
+                                </tr>
+                            </tfoot>
 
                         </table>
 

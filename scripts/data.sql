@@ -23,3 +23,7 @@ INSERT INTO User (mail,password) values ('melis@gmail.com','d3232f');
 INSERT INTO User (mail,password) values ('ayse@gmail.com','d3232f');
 
 
+INSERT INTO systemuser(email,password,ugroup_id) values ('t@mail.com' , '12345' , 1);
+INSERT INTO systemgroup(gname) values ('Author');
+
+

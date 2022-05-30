@@ -5,6 +5,7 @@
 package controller;
 
 import dao.SystemUserDAO;
+import entity.SystemGroup;
 import entity.SystemUser;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
@@ -25,6 +26,11 @@ public class SystemUserBean implements Serializable {
     private SystemUser entity;
     private List<SystemUser> list;
     private SystemUserDAO dao;
+    
+    //PAGINATION ATTRIBUTES
+    private int page = 1;
+    private int pageCount;
+    //*************************
 
     public SystemUserBean() {
     }
@@ -47,6 +53,43 @@ public class SystemUserBean implements Serializable {
         this.getDao().delete(entity);
         entity = new SystemUser();
     }
+    
+    //FOR PAGINATION
+
+    public void nextPage() {
+        page++;
+        if (page > pageCount) {
+            page = pageCount;
+        }
+    }
+
+    public void previousPage() {
+        page--;
+        if (page < 1) {
+            page = 1;
+        }
+    }
+
+    public int getPageCount() {
+        int numOfRowOnPage = 5;
+        List<SystemUser> list = this.getDao().readList();
+        pageCount = (int) Math.ceil(list.size() / numOfRowOnPage);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+    
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+    
+    //********************************************
 
     public SystemUser getEntity() {
         if (entity == null) {
@@ -60,7 +103,8 @@ public class SystemUserBean implements Serializable {
     }
 
     public List<SystemUser> getList() {
-        list = this.getDao().readList();
+        //PAGINATION
+        list = this.getDao().readList(page);
         return list;
     }
 
