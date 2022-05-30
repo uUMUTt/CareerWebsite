@@ -73,16 +73,16 @@ public class PrivilegesDAO extends DBConnection {
 
         return list;
     }
-    
+
     public List<Privileges> readList(int page) {
         List<Privileges> list = new ArrayList<>();
-        
+
         int numOfRowOnPage = 5;
         int offset = (page - 1) * numOfRowOnPage;
 
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from privileges limit " + numOfRowOnPage + " offset " + offset + "";
+            String query = "select * from privileges order by id asc limit " + numOfRowOnPage + " offset " + offset + "";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
@@ -128,7 +128,7 @@ public class PrivilegesDAO extends DBConnection {
     public void update(Privileges privileges) {
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update privileges set mname='" + privileges.getMname() + "'  where id=" + privileges.getId() + "";
+            String query = "update privileges set mname='" + privileges.getMname() + "' , icreate=" + privileges.isIcreate() + " , iread=" + privileges.isIread() + "  , iupdate=" + privileges.isIupdate() + " , idelete=" + privileges.isIdelete() + " , ilist=" + privileges.isIlist() + " , irshow=" + privileges.isIrshow() + " where id=" + privileges.getId() + "";
             int r = st.executeUpdate(query);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
