@@ -13,7 +13,7 @@ import util.DBConnection;
 
 /**
  *
- * @author kalix
+ * @author Umut Karadas
  */
 public class SystemUserDAO extends DBConnection {
 
