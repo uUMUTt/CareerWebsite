@@ -42,7 +42,7 @@ public class SessionBean implements Serializable {
             return "/index?faces-redirect=true";
         }
     }
-    
+      
     public String clearForm() {
         email = "";
         password = "";
