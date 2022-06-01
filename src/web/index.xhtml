@@ -3,19 +3,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Login Screen</title>
         <h:outputStylesheet library="css" name="bootstrap.min.css" />
+
+        <title>Login Screen</title>
+        <style>
+
+            #baslik {
+                background-color: #055160;
+                color: white;
+                border: 2px solid black;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        </style>
+
     </h:head>
     <h:body>
-        
-        <!-- XHTML VALIDATION -->
-        <h:form>
-            Email : <h:inputText value="#{sessionBean.email}" required="true" requiredMessage="Username is required"/> <br/>
-            Password : <h:inputText value="#{sessionBean.password}" required="true" requiredMessage="Password is required" validator="#{validationBean.validatePassword}"/> <br/>
-            <h:commandButton action="#{sessionBean.login}" value="Login" />
-        </h:form>
-        
-        <h:messages/>
-        
+        <div class="container mt-5">
+            <h1 id="baslik">LOGIN SCREEN</h1>
+
+            <!-- XHTML VALIDATION -->
+            <h:panelGrid style="margin: 10px auto;">
+                <h:form>
+                    <div class="mb-1">
+                        <br/><br/>
+                        <label class="form-label">E-mail:</label><br/>
+                        <h:inputText style="width: 250px;" styleClass="form-control-sm wid" value="#{sessionBean.email}" required="true" requiredMessage="Username is required"/> <br/>
+                        <br/>
+                        <label class="form-label">Password:</label><br/>
+                        <h:inputText style="width: 250px;" styleClass="form-control-sm " value="#{sessionBean.password}" required="true" requiredMessage="Password is required" validator="#{validationBean.validatePassword}"/> <br/>
+                        <br/>
+                        <h:commandButton styleClass="btn btn-success" action="#{sessionBean.login}" value="Login" />
+                    </div>
+                </h:form>
+            </h:panelGrid>
+
+            <h:messages/>
+        </div>
     </h:body>
 </html>
