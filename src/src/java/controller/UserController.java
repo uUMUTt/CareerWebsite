@@ -21,21 +21,18 @@ public class UserController implements Serializable {
         this.id = -1;
     }
 
-    public String listAll() {
+    public void listAll() {
         this.id = -1;
-        return "user";
     }
 
-    public String readByID() {
+    public void readByID() {
         this.users = new ArrayList<>();
         this.users.add(this.getUserDAO().readByID(this.id));
-        return "user";
     }
 
-    public String create() {
+    public void create() {
         userDAO.insert(user);
         user = new User();
-        return "user";
     }
 
     public String delete(User u) {
@@ -43,10 +40,13 @@ public class UserController implements Serializable {
         return "user";
     }
 
-    public String update() {
+    public void update() {
         userDAO.update(user);
         user = new User();
-        return "user";
+    }
+    
+    public void clearForm() {
+        this.user = new User();
     }
 
     public UserDAO getUserDAO() {

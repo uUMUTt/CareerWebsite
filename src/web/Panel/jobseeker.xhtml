@@ -37,7 +37,7 @@
 
             <hr/>
 
-            <h:form>
+            <h:form id="jobseeker-form">
                 <div class="mb-3">
                     <label class="form-label"> Degree : </label>
                     <h:selectOneMenu styleClass="form-control" value="#{jobseekerController.jobSeeker.degree}" converter="degreeConverter">
@@ -69,21 +69,39 @@
                     <h:inputText styleClass="form-control" value="#{jobseekerController.jobSeeker.experience}" />
                 </div>
 
-                <h:commandButton styleClass="btn btn-success" rendered="#{jobseekerController.jobSeeker.id == 0}" action="#{jobseekerController.create}" value="Save"/>
-                <h:commandButton styleClass="btn btn-primary" rendered="#{jobseekerController.jobSeeker.id != 0}" action="#{jobseekerController.update}" value="Edit"/>
+                <h:commandButton styleClass="btn btn-success" rendered="#{jobseekerController.jobSeeker.id == 0}" action="#{jobseekerController.create}" value="Save">
+                    <f:ajax execute="jobseeker-form" render="jobseeker-form jobseeker-table" />
+                </h:commandButton>
+                                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{jobseekerController.jobSeeker.id != 0}" action="#{jobseekerController.update}" value="Edit">
+                    <f:ajax execute="jobseeker-form" render="jobseeker-form jobseeker-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{jobseekerController.jobSeeker.id != 0}" action="#{jobseekerController.clearForm}" value="Clear">
+                    <f:ajax execute="jobseeker-form" render="jobseeker-form jobseeker-table" />
+                </h:commandButton>
+                
             </h:form>
 
             <hr/>
 
-            <h:form>
+            <h:form id="goster">
                 Find By ID : <h:inputText  value="#{jobseekerController.id}" /><br/> <br/> 
-                <h:commandButton styleClass="btn btn-info" action="#{jobseekerController.readByID}" value="Search"/>
-                <h:commandButton styleClass="btn btn-secondary" action="#{jobseekerController.listAll}" value="List All"/>
+                
+                <h:commandButton styleClass="btn btn-info" action="#{jobseekerController.readByID}" value="Search">
+                    <f:ajax execute="goster" render="jobseeker-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-secondary" action="#{jobseekerController.listAll}" value="List All">
+                    <f:ajax execute="goster" render="jobseeker-table" />
+                </h:commandButton>
+                
+                
             </h:form>
 
             <hr/>
 
-            <h:form>
+            <h:form id="jobseeker-table">
                 <h:dataTable styleClass="table table-striped table-hover" border="1" value="#{jobseekerController.jobSeekers}" var="js">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
@@ -91,7 +109,11 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">FIRST NAME</f:facet>
-                            #{js.firstName}
+                        
+                        <h:commandLink action="#{jobseekerController.setJobSeeker(js)}" value="#{js.firstName}">
+                            <f:ajax execute="@this" render="jobseeker-form" />
+                        </h:commandLink>
+                      
                     </h:column>
                     <h:column>
                         <f:facet name="header">LAST NAME</f:facet>
@@ -139,8 +161,9 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">ADMINISTRATION</f:facet>
-                        <h:commandButton styleClass="btn btn-danger" action="#{jobseekerController.delete(js)}" value="Delete"/>
-                        <h:commandButton styleClass="btn btn-primary" action="#{jobseekerController.setJobSeeker(js)}" value="Edit"/>
+                        <h:commandButton styleClass="btn btn-danger" action="#{jobseekerController.delete(js)}" value="Delete">
+                            <f:ajax execute="@this" render="jobseeker-form jobseeker-table" />
+                        </h:commandButton>
                     </h:column>
                 </h:dataTable>
             </h:form>

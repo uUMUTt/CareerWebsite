@@ -26,32 +26,31 @@ public class CompanyTypeController implements Serializable {
         this.id = -1;
     }
     
-    public String listAll() {
+    public void listAll() {
         this.id = -1;
-        return "company_type";
     }
     
-    public String readByID() {
+    public void readByID() {
         this.companyTypes = new ArrayList<>();
         this.companyTypes.add(this.getCompanyTypeDAO().readByID(this.id));
-        return "company_type";
     }
     
-    public String create(){
+    public void create(){
         companyTypeDAO.insert(companyType);
         companyType = new CompanyType();
-        return "company_type";
     }
     
-    public String delete(CompanyType p) {
+    public void delete(CompanyType p) {
         companyTypeDAO.delete(p);
-        return "company_type";
     }
     
-    public String update() {
+    public void update() {
         companyTypeDAO.update(companyType);
         companyType = new CompanyType();
-        return "company_type";
+    }
+    
+    public void clearForm() {
+        this.companyType = new CompanyType();
     }
 
     public CompanyTypeDAO getCompanyTypeDAO() {

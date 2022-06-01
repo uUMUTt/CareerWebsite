@@ -36,28 +36,46 @@
                 <h:commandButton styleClass="btn btn-warning" action="/Panel/panel" value="HOME"/>
             </h:form>
             <hr/>
-            <h:form>
+            <h:form id="degree-form">
                 <div class="mb-3">
                     <label class="form-label"> Title : </label>
                     <h:inputText styleClass="form-control" value="#{degreeController.degree.title}" />
                 </div>
 
-                <h:commandButton styleClass="btn btn-success" rendered="#{degreeController.degree.id == 0}" action="#{degreeController.create}" value="Save"/>
-                <h:commandButton styleClass="btn btn-primary" rendered="#{degreeController.degree.id != 0}" action="#{degreeController.update}" value="Edit"/>
-            </h:form>
+                <h:commandButton styleClass="btn btn-success" rendered="#{degreeController.degree.id == 0}" action="#{degreeController.create}" value="Save">
+                    <f:ajax execute="degree-form" render="degree-form degree-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{degreeController.degree.id != 0}" action="#{degreeController.update}" value="Edit">
+                    <f:ajax execute="degree-form" render="degree-form degree-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{degreeController.degree.id != 0}" action="#{degreeController.clearForm}" value="Clear">
+                    <f:ajax execute="degree-form" render="degree-form degree-table" />
+                </h:commandButton>
+                
+                </h:form>
 
             <hr/>
 
-            <h:form>
+            <h:form id="goster">
                 Find By ID : <h:inputText  value="#{degreeController.id}" /><br/> <br/> 
-                <h:commandButton styleClass="btn btn-info" action="#{degreeController.readByID}" value="Search"/>
-                <h:commandButton styleClass="btn btn-secondary" action="#{degreeController.listAll}" value="List All"/>
+                
+                <h:commandButton styleClass="btn btn-info" action="#{degreeController.readByID}" value="Search">
+                    <f:ajax execute="goster" render="degree-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-secondary" action="#{degreeController.listAll}" value="List All">
+                    <f:ajax execute="goster" render="degree-table" />
+                </h:commandButton>
+                
+                
             </h:form>
 
             <hr/>
 
 
-            <h:form>
+            <h:form id="degree-table">
                 <h:dataTable styleClass="table table-striped table-hover" value="#{degreeController.degrees}" var="degree">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
@@ -66,12 +84,17 @@
 
                     <h:column>
                         <f:facet name="header">TITLE</f:facet>
-                            #{degree.title}
+                        <h:commandLink action="#{degreeController.setDegree(degree)}" value="#{degree.title}">
+                            <f:ajax execute="@this" render="degree-form" />
+                        </h:commandLink>
                     </h:column>
                     <h:column>
                         <f:facet name="header">ADMINISTRATION</f:facet>
-                        <h:commandButton styleClass="btn btn-danger" action="#{degreeController.delete(degree)}" value="Delete"/>
-                        <h:commandButton styleClass="btn btn-primary" action="#{degreeController.setDegree(degree)}" value="Edit"/>
+                        
+                        <h:commandButton styleClass="btn btn-danger" action="#{degreeController.delete(degree)}" value="Delete">
+                            <f:ajax execute="@this" render="degree-form degree-table" />
+                        </h:commandButton>
+                        
                     </h:column>
                 </h:dataTable>
             </h:form>

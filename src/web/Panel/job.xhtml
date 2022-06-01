@@ -37,7 +37,7 @@
 
             <hr/>
 
-            <h:form>
+            <h:form id="job-form">
                 <div class="mb-3">
                     <label class="form-label"> Degree : </label>
 
@@ -47,28 +47,45 @@
                     <label class="form-label"> Salary : </label>
                     <h:inputText styleClass="form-control" value="#{jobController.job.salary}" /><br/>   
                     <label class="form-label"> Experience : </label>
-                     <h:inputText styleClass="form-control" value="#{jobController.job.experience}" /><br/>   
+                    <h:inputText styleClass="form-control" value="#{jobController.job.experience}" /><br/>   
                     <label class="form-label"> Detail : </label>
-                     <h:inputTextarea styleClass="form-control" value="#{jobController.job.detail}" /><br/>
+                    <h:inputTextarea styleClass="form-control" value="#{jobController.job.detail}" /><br/>
                     <label class="form-label"> Deadline : </label>
-                     <h:inputText styleClass="form-control" value="#{jobController.job.deadline}" /> 
+                    <h:inputText styleClass="form-control" value="#{jobController.job.deadline}" /> 
                 </div>
 
-                <h:commandButton styleClass="btn btn-success" rendered="#{jobController.job.id == 0}" action="#{jobController.create}" value="Save"/>
-                <h:commandButton styleClass="btn btn-primary" rendered="#{jobController.job.id != 0}" action="#{jobController.update}" value="Edit"/>
+                <h:commandButton styleClass="btn btn-success" rendered="#{jobController.job.id == 0}" action="#{jobController.create}" value="Save">
+                    <f:ajax execute="job-form" render="job-form job-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{jobController.job.id != 0}" action="#{jobController.update}" value="Edit">
+                    <f:ajax execute="job-form" render="job-form job-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{jobController.job.id != 0}" action="#{jobController.clearForm}" value="Clear">
+                    <f:ajax execute="job-form" render="job-form job-table" />
+                </h:commandButton>
             </h:form>
 
             <hr/>
 
-            <h:form>
+            <h:form id="goster">
                 Find By ID : <h:inputText  value="#{jobController.id}" /><br/> <br/> 
-                <h:commandButton styleClass="btn btn-info" action="#{jobController.readByID}" value="Search"/>
-                <h:commandButton styleClass="btn btn-secondary" action="#{jobController.listAll}" value="List All"/>
+                
+                <h:commandButton styleClass="btn btn-info" action="#{jobController.readByID}" value="Search">
+                    <f:ajax execute="goster" render="job-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-secondary" action="#{jobController.listAll}" value="List All">
+                    <f:ajax execute="goster" render="job-table" />
+                </h:commandButton>
+                
+                
             </h:form>
 
             <hr/>
 
-            <h:form>
+            <h:form id="job-table">
                 <h:dataTable styleClass="table table-striped table-hover" border="1" value="#{jobController.jobs}" var="j">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
@@ -76,7 +93,12 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">DEGREE TITLE</f:facet>
-                            #{j.degree.title}
+                        <h:commandLink action="#{jobController.setJob(j)}" value="#{j.degree.title}">
+                            <f:ajax execute="@this" render="job-form" />
+                        </h:commandLink>
+
+
+
                     </h:column>
                     <h:column>
                         <f:facet name="header">SALARY</f:facet>
@@ -100,8 +122,10 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">ADMINISTRATION</f:facet>
-                        <h:commandButton styleClass="btn btn-danger" action="#{jobController.delete(j)}" value="Delete"/>
-                        <h:commandButton styleClass="btn btn-primary" action="#{jobController.setJob(j)}" value="Edit"/>
+                        <h:commandButton styleClass="btn btn-danger" action="#{jobController.delete(j)}" value="Delete">
+                            <f:ajax execute="@this" render="job-form job-table" />
+                        </h:commandButton>
+                        
                     </h:column>
                 </h:dataTable>
             </h:form>

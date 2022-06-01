@@ -26,32 +26,32 @@ public class DegreeController implements Serializable {
         this.id = -1;
     }
 
-    public String listAll() {
+    public void listAll() {
         this.id = -1;
-        return "degree";
     }
 
-    public String readByID() {
+    public void readByID() {
         this.degrees = new ArrayList<>();
         this.degrees.add(this.getDegreeDAO().readByID(this.id));
-        return "degree";
     }
 
-    public String create() {
+    public void create() {
         degreeDAO.insert(degree);
         degree = new Degree();
-        return "degree";
     }
 
-    public String delete(Degree p) {
+    public void delete(Degree p) {
         degreeDAO.delete(p);
-        return "degree";
     }
 
     public String update() {
         degreeDAO.update(degree);
         degree = new Degree();
         return "degree";
+    }
+    
+    public void clearForm() {
+        this.degree = new Degree();
     }
 
     public DegreeDAO getDegreeDAO() {

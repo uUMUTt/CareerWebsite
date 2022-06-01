@@ -36,25 +36,43 @@
                 <h:commandButton styleClass="btn btn-warning" action="/Panel/panel" value="HOME"/>
             </h:form>
             <hr/>
-            <h:form>
+            <h:form id="skill-form">
                 <div class="mb-3">
                     <label class="form-label">  Title : </label>
                     <h:inputText styleClass="form-control" value="#{skillController.skill.title}" />
                 </div>
 
-                <h:commandButton styleClass="btn btn-success" rendered="#{skillController.skill.id == 0}" action="#{skillController.create}" value="Save"/>
-                <h:commandButton styleClass="btn btn-primary" rendered="#{skillController.skill.id != 0}" action="#{skillController.update}" value="Edit"/>
+                <h:commandButton styleClass="btn btn-success" rendered="#{skillController.skill.id == 0}" action="#{skillController.create}" value="Save">
+                    <f:ajax execute="skill-form" render="skill-form skill-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{skillController.skill.id != 0}" action="#{skillController.update}" value="Edit">
+                    <f:ajax execute="skill-form" render="skill-form skill-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{skillController.skill.id != 0}" action="#{skillController.clearForm}" value="Clear">
+                    <f:ajax execute="skill-form" render="skill-form skill-table" />
+                </h:commandButton>
+                
             </h:form>
 
-            <h:form>
-                Find By ID : <h:inputText  value="#{skillController.id}" /><br/><br/>  
-                <h:commandButton styleClass="btn btn-info" action="#{skillController.readByID}" value="Search"/>
-                <h:commandButton styleClass="btn btn-secondary" action="#{skillController.listAll}" value="List All"/>
+            <h:form id="goster">
+                Find By ID : <h:inputText  value="#{skillController.id}" /><br/> <br/> 
+                
+                <h:commandButton styleClass="btn btn-info" action="#{skillController.readByID}" value="Search">
+                    <f:ajax execute="goster" render="skill-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-secondary" action="#{skillController.listAll}" value="List All">
+                    <f:ajax execute="goster" render="skill-table" />
+                </h:commandButton>
+                
+                
             </h:form>
 
             <hr/>
 
-            <h:form>
+            <h:form id="skill-table">
                 <h:dataTable styleClass="table table-striped table-hover" value="#{skillController.skills}" var="skill">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
@@ -63,12 +81,16 @@
 
                     <h:column>
                         <f:facet name="header">TITLE</f:facet>
-                            #{skill.title}
+                        <h:commandLink action="#{skillController.setSkill(skill)}" value="#{skill.title}">
+                            <f:ajax execute="@this" render="skill-form" />
+                        </h:commandLink>
+                            
                     </h:column>
                     <h:column>
                         <f:facet name="header">ADMINISTRATION</f:facet>
-                        <h:commandButton styleClass="btn btn-danger" action="#{skillController.delete(skill)}" value="Delete"/>
-                        <h:commandButton styleClass="btn btn-primary" action="#{skillController.setSkill(skill)}" value="Edit"/>
+                        <h:commandButton styleClass="btn btn-danger" action="#{skillController.delete(skill)}" value="Delete">
+                            <f:ajax execute="@this" render="skill-form skill-table" />
+                        </h:commandButton>
                     </h:column>
                 </h:dataTable>
             </h:form>

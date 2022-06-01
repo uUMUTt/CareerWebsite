@@ -22,33 +22,34 @@ public class SkillController implements Serializable {
         this.id = -1;
     }
 
-    public String listAll() {
+    public void listAll() {
         this.id = -1;
-        return "skill";
     }
 
-    public String readByID() {
+    public void readByID() {
         this.skills = new ArrayList<>();
         this.skills.add(this.getSkillDAO().readByID(this.id));
-        return "skill";
     }
 
-    public String create() {
+    public void create() {
         skillDAO.insert(skill);
         skill = new Skill();
-        return "skill";
     }
 
-    public String delete(Skill p) {
+    public void delete(Skill p) {
         skillDAO.delete(p);
-        return "skill";
     }
 
-    public String update() {
+    public void update() {
         skillDAO.update(skill);
         skill = new Skill();
-        return "skill";
     }
+    
+    
+    public void clearForm() {
+        this.skill = new Skill();
+    }
+
 
     public SkillDAO getSkillDAO() {
         if (this.skillDAO == null) {

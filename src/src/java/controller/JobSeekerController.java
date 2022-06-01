@@ -25,32 +25,31 @@ public class JobSeekerController implements Serializable {
         this.id = -1;
     }
 
-    public String listAll() {
+    public void listAll() {
         this.id = -1;
-        return "jobseeker";
     }
 
-    public String readByID() {
+    public void readByID() {
         this.jobSeekers = new ArrayList<>();
         this.jobSeekers.add(this.getJobSeekerDAO().readByID(this.id));
-        return "jobseeker";
     }
 
-    public String create() {
+    public void create() {
         jobSeekerDAO.insert(jobSeeker);
         jobSeeker = new JobSeeker();
-        return "jobseeker";
     }
 
-    public String delete(JobSeeker p) {
+    public void delete(JobSeeker p) {
         jobSeekerDAO.delete(p);
-        return "jobseeker";
     }
 
-    public String update() {
+    public void update() {
         jobSeekerDAO.update(jobSeeker);
         jobSeeker = new JobSeeker();
-        return "jobseeker";
+    }
+    
+    public void clearForm() {
+        this.jobSeeker = new JobSeeker();
     }
 
     public JobSeeker getJobSeeker() {

@@ -43,8 +43,8 @@ public class SystemGroupBean implements Serializable {
     }
 
     public void update() {
-        this.getDao().update(entity);
-        entity = new SystemGroup();
+         this.getDao().update(entity);
+         entity = new SystemGroup();
     }
 
     public void delete() {

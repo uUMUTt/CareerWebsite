@@ -16,7 +16,7 @@
                 padding-top: 20px;
                 padding-bottom: 20px;
             }
-            
+
             #alt-baslik {
                 background-color: #b02a37;
                 color: white;
@@ -30,16 +30,16 @@
     <h:body>
 
         <div class="container">
-            
+
             <h1 id="baslik">CAREER WEBSITES</h1>
             <h1 id="alt-baslik">Privilege Table</h1>
-            
+
             <div class="row">
                 <h:form styleClass="my-3">
-                    <h:commandButton styleClass="btn" action="/Panel/panel?faces-redirect=true" value="HOME" />
-                    <h:commandButton styleClass="btn" action="/Panel/systemgroup/systemgroup?faces-redirect=true" value="SYSTEM GROUP" />
-                    <h:commandButton styleClass="btn" action="/Panel/systemuser/systemuser?faces-redirect=true" value="SYSTEM USER" />
-                    <h:commandButton styleClass="btn" action="/Panel/privilege/privilege?faces-redirect=true" value="PRIVILEGES" />
+                    <h:commandButton styleClass="btn btn-warning" action="/Panel/panel?faces-redirect=true" value="HOME" />
+                    <h:commandButton styleClass="btn btn-primary" action="/Panel/systemgroup/systemgroup?faces-redirect=true" value="SYSTEM GROUP" />
+                    <h:commandButton styleClass="btn btn-primary" action="/Panel/systemuser/systemuser?faces-redirect=true" value="SYSTEM USER" />
+                    <h:commandButton styleClass="btn btn-primary" action="/Panel/privilege/privilege?faces-redirect=true" value="PRIVILEGES" />
                 </h:form>
             </div>
 
@@ -47,40 +47,40 @@
 
                 <div class="col">
 
-                    <h:form>
+                    <h:form id="privilege-form">
 
                         <div class="mb-3">
                             <label>Name</label>
                             <h:inputText value="#{privilegesBean.entity.mname}" styleClass="form-control" />
                         </div>
-                        
+
                         <div class="mb-3">
                             <label>System Group</label>
                             <h:selectOneMenu styleClass="form-select" value="#{privilegesBean.entity.systemGroup}" converter="systemGroupConverter">
                                 <f:selectItems value="#{systemGroupBean.list}" var="g" itemLabel="#{g.groupName}" itemValue="#{g}" />
                             </h:selectOneMenu>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label>Create</label>
                             <h:selectBooleanCheckbox value="#{privilegesBean.entity.icreate}" styleClass="form-check" />
                         </div>
-                        
+
                         <div class="mb-3">
                             <label>Read</label>
                             <h:selectBooleanCheckbox value="#{privilegesBean.entity.iread}" styleClass="form-check" />
                         </div>
-                        
+
                         <div class="mb-3">
                             <label>Update</label>
                             <h:selectBooleanCheckbox value="#{privilegesBean.entity.iupdate}" styleClass="form-check" />
                         </div>
-                        
+
                         <div class="mb-3">
                             <label>Delete</label>
                             <h:selectBooleanCheckbox value="#{privilegesBean.entity.idelete}" styleClass="form-check" />
                         </div>
-                        
+
                         <div class="mb-3">
                             <label>List</label>
                             <h:selectBooleanCheckbox value="#{privilegesBean.entity.ilist}" styleClass="form-check" />
@@ -90,12 +90,24 @@
                             <label>Show</label>
                             <h:selectBooleanCheckbox value="#{privilegesBean.entity.irshow}" styleClass="form-check" />
                         </div>
-                        
+
                         <div class="mb-3">
-                            <h:commandButton styleClass="btn btn-success" rendered="#{privilegesBean.entity.id==0}" action="#{privilegesBean.create}" value="Save" />
-                            <h:commandButton styleClass="btn btn-secondary" rendered="#{privilegesBean.entity.id!=0}" action="#{privilegesBean.clearForm}" value="Clear" />
-                            <h:commandButton styleClass="btn btn-primary" rendered="#{privilegesBean.entity.id!=0}" action="#{privilegesBean.update}" value="Update" />
-                            <h:commandButton styleClass="btn btn-danger" rendered="#{privilegesBean.entity.id!=0}" action="#{privilegesBean.delete}" value="Delete" />
+                            <h:commandButton styleClass="btn btn-success" rendered="#{privilegesBean.entity.id==0}" action="#{privilegesBean.create}" value="Save" >
+                                <f:ajax execute="privilege-form" render="privilege-form privilege-table" />
+                            </h:commandButton>
+                            
+                            <h:commandButton styleClass="btn btn-secondary" rendered="#{privilegesBean.entity.id!=0}" action="#{privilegesBean.clearForm}" value="Clear" >
+                                <f:ajax execute="privilege-form" render="privilege-form privilege-table" />
+                            </h:commandButton>
+                            
+                            <h:commandButton styleClass="btn btn-primary" rendered="#{privilegesBean.entity.id!=0}" action="#{privilegesBean.update}" value="Update" >
+                                <f:ajax execute="privilege-form" render="privilege-form privilege-table" />
+                            </h:commandButton>
+                            
+                            <h:commandButton styleClass="btn btn-danger" rendered="#{privilegesBean.entity.id!=0}" action="#{privilegesBean.delete}" value="Delete" >
+                                <f:ajax execute="privilege-form" render="privilege-form privilege-table" />
+                            </h:commandButton>
+
                         </div>
 
                     </h:form>
@@ -104,7 +116,7 @@
 
                 <div class="col">
 
-                    <h:form>
+                    <h:form id="privilege-table">
 
                         <table class="table table-striped table-hover">
 
@@ -120,7 +132,7 @@
                                     <th>DELETE</th>
                                     <th>LIST</th>
                                     <th>SHOW</th>
-                                    
+
                                 </tr>
                             </thead>
 
@@ -130,7 +142,9 @@
 
                                         <td>#{e.id}</td>
                                         <td>
-                                            <h:commandLink action="#{privilegesBean.setEntity(e)}" value="#{e.mname}" />
+                                            <h:commandLink action="#{privilegesBean.setEntity(e)}" value="#{e.mname}">
+                                                <f:ajax execute="@this" render="privilege-form" />
+                                            </h:commandLink>
                                         </td>
                                         <td>#{e.systemGroup.groupName}</td>
                                         <td>#{e.icreate}</td>
@@ -143,12 +157,19 @@
                                     </tr>
                                 </ui:repeat>
                             </tbody>
-                            
+
                             <tfoot>
                                 <tr>
                                     <h3>Page :#{privilegesBean.page} / #{privilegesBean.pageCount}</h3>
-                                    <h:commandButton styleClass="btn btn-sm btn-success" action="#{privilegesBean.previousPage}" value="previous" />
-                                    <h:commandButton styleClass="btn btn-sm btn-success" action="#{privilegesBean.nextPage}" value="next" />
+
+                                    <h:commandButton styleClass="btn btn-sm btn-success" action="#{privilegesBean.previousPage}" value="Previous">
+                                        <f:ajax execute="@this" render="privilege-table" />
+                                    </h:commandButton>
+
+                                    <h:commandButton styleClass="btn btn-sm btn-success" action="#{privilegesBean.nextPage}" value="Next" >
+                                        <f:ajax execute="@this" render="privilege-table" />
+                                    </h:commandButton>
+
                                 </tr>
                             </tfoot>
 

@@ -36,7 +36,7 @@
                 <h:commandButton styleClass="btn btn-warning" action="/Panel/panel" value="HOME"/>
             </h:form>
             <hr/>
-            <h:form>
+            <h:form id="user-form">
                 <div class="mb-3">
                     <label class="form-label"> User : </label>
                     <h:inputText styleClass="form-control" value="#{userController.user.mail}" /><br/>
@@ -44,19 +44,37 @@
                     <h:inputText styleClass="form-control" value="#{userController.user.password}" />
                 </div>
 
-                <h:commandButton styleClass="btn btn-success" rendered="#{userController.user.id == 0}" action="#{userController.create}" value="Save"/>
-                <h:commandButton styleClass="btn btn-primary" rendered="#{userController.user.id != 0}" action="#{userController.update}" value="Edit"/>
+                <h:commandButton styleClass="btn btn-success" rendered="#{userController.user.id == 0}" action="#{userController.create}" value="Save">
+                    <f:ajax execute="user-form" render="user-form user-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{userController.user.id != 0}" action="#{userController.update}" value="Edit">
+                    <f:ajax execute="user-form" render="user-form user-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{userController.user.id != 0}" action="#{userController.clearForm}" value="Clear">
+                    <f:ajax execute="user-form" render="user-form user-table" />
+                </h:commandButton>
+                
             </h:form>
 
-            <h:form>
+            <h:form id="goster">
                 Find By ID : <h:inputText  value="#{userController.id}" /><br/> <br/> 
-                <h:commandButton styleClass="btn btn-info" action="#{userController.readByID}" value="Search"/>
-                <h:commandButton styleClass="btn btn-secondary" action="#{userController.listAll}" value="List All"/>
+                
+                <h:commandButton styleClass="btn btn-info" action="#{userController.readByID}" value="Search">
+                    <f:ajax execute="goster" render="user-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-secondary" action="#{userController.listAll}" value="List All">
+                    <f:ajax execute="goster" render="user-table" />
+                </h:commandButton>
+                
+                
             </h:form>
 
             <hr/>
 
-            <h:form>
+            <h:form id="user-table">
                 <h:dataTable styleClass="table table-striped table-hover" value="#{userController.users}" var="user">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
@@ -64,7 +82,10 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">MAIL</f:facet>
-                            #{user.mail}
+                        <h:commandLink action="#{userController.setUser(user)}" value="#{user.mail}">
+                            <f:ajax execute="@this" render="user-form" />
+                        </h:commandLink>
+                            
                     </h:column>
 
                     <h:column>
@@ -73,8 +94,9 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">ADMINISTRATION</f:facet>
-                        <h:commandButton styleClass="btn btn-danger" action="#{userController.delete(user)}" value="Delete"/>
-                        <h:commandButton styleClass="btn btn-primary" action="#{userController.setUser(user)}" value="Edit"/>
+                        <h:commandButton styleClass="btn btn-danger" action="#{userController.delete(user)}" value="Delete">
+                            <f:ajax execute="@this" render="user-form user-table" />
+                        </h:commandButton>
                     </h:column>
                 </h:dataTable>
             </h:form>

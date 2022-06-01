@@ -36,27 +36,45 @@
                 <h:commandButton styleClass="btn btn-warning" action="/Panel/panel" value="HOME"/>
             </h:form>
             <hr/>
-            <h:form>
+            <h:form id="company-type-form">
                 <div class="mb-3">
                     <label class="form-label"> Title : </label>
                     <h:inputText styleClass="form-control" value="#{companyTypeController.companyType.title}" />
                 </div>
+                
+                <h:commandButton styleClass="btn btn-success" rendered="#{companyTypeController.companyType.id == 0}" action="#{companyTypeController.create}" value="Save">
+                    <f:ajax execute="company-type-form" render="company-type-form company-type-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{companyTypeController.companyType.id != 0}" action="#{companyTypeController.update}" value="Edit">
+                    <f:ajax execute="company-type-form" render="company-type-form company-type-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-primary" rendered="#{companyTypeController.companyType.id != 0}" action="#{companyTypeController.clearForm}" value="Clear">
+                    <f:ajax execute="company-type-form" render="company-type-form company-type-table" />
+                </h:commandButton>
 
-                <h:commandButton styleClass="btn btn-success" rendered="#{companyTypeController.companyType.id == 0}" action="#{companyTypeController.create}" value="Save"/>
-                <h:commandButton styleClass="btn btn-primary" rendered="#{companyTypeController.companyType.id != 0}" action="#{companyTypeController.update}" value="Edit"/>
             </h:form>
 
             <hr/>
 
-            <h:form>
+            <h:form id="goster">
                 Find By ID : <h:inputText  value="#{companyTypeController.id}" /><br/> <br/> 
-                <h:commandButton styleClass="btn btn-info" action="#{companyTypeController.readByID}" value="Search"/>
-                <h:commandButton styleClass="btn btn-secondary" action="#{companyTypeController.listAll}" value="List All"/>
+                
+                <h:commandButton styleClass="btn btn-info" action="#{companyTypeController.readByID}" value="Search">
+                    <f:ajax execute="goster" render="company-type-table" />
+                </h:commandButton>
+                
+                <h:commandButton styleClass="btn btn-secondary" action="#{companyTypeController.listAll}" value="List All">
+                    <f:ajax execute="goster" render="company-type-table" />
+                </h:commandButton>
+                
+                
             </h:form>
 
             <hr/>
 
-            <h:form>
+            <h:form id="company-type-table">
                 <h:dataTable styleClass="table table-striped table-hover" value="#{companyTypeController.companyTypes}" var="companyType">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
@@ -65,12 +83,18 @@
 
                     <h:column>
                         <f:facet name="header">TITLE</f:facet>
-                            #{companyType.title}
+                        <h:commandLink action="#{companyTypeController.setCompanyType(companyType)}" value="#{companyType.title}">
+                            <f:ajax execute="@this" render="company-type-form" />
+                        </h:commandLink>
+                            
                     </h:column>
                     <h:column>
                         <f:facet name="header">ADMINISTRATION</f:facet>
-                        <h:commandButton styleClass="btn btn-danger" action="#{companyTypeController.delete(companyType)}" value="Delete"/>
-                        <h:commandButton styleClass="btn btn-primary" action="#{companyTypeController.setCompanyType(companyType)}" value="Edit"/>
+                        
+                        <h:commandButton styleClass="btn btn-danger" action="#{companyTypeController.delete(companyType)}" value="Delete">
+                            <f:ajax execute="@this" render="company-type-form company-type-table" />
+                        </h:commandButton>
+                        
                     </h:column>
                 </h:dataTable>
             </h:form>

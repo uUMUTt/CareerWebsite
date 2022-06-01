@@ -27,26 +27,26 @@ public class CompanyController implements Serializable {
     }
     
     
-    public String listAll() {
+    public void listAll() {
         this.id = -1;
-        return "company";
     }
     
-    public String create(){
+    public void create(){
         companyDAO.insert(company);
         company = new Company();
-        return "company";
     }
     
-    public String delete(Company p) {
+    public void delete(Company p) {
         companyDAO.delete(p);
-        return "company";
     }
     
-    public String update() {
+    public void update() {
         companyDAO.update(company);
         company = new Company();
-        return "company";
+    }
+    
+    public void clearForm() {
+        this.company = new Company();
     }
 
     public int getId() {
@@ -59,10 +59,9 @@ public class CompanyController implements Serializable {
     
     
     
-    public String readByID() {
+    public void readByID() {
         this.companies = new ArrayList<>();
         this.companies.add(this.getCompanyDAO().readByID(this.id));
-        return "company";
     }
 
     public CompanyDAO getCompanyDAO() {

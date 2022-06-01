@@ -25,32 +25,31 @@ public class JobController implements Serializable {
         this.id = -1;
     }
 
-    public String listAll() {
+    public void listAll() {
         this.id = -1;
-        return "job";
     }
 
-    public String readByID() {
+    public void readByID() {
         this.jobs = new ArrayList<>();
         this.jobs.add(this.getJobDAO().readByID(this.id));
-        return "job";
     }
-
-    public String create() {
+    
+    public void create() {
         jobDAO.insert(job);
         job = new Job();
-        return "job";
     }
 
-    public String delete(Job p) {
+    public void delete(Job p) {
         jobDAO.delete(p);
-        return "job";
     }
 
-    public String update() {
+    public void update() {
         jobDAO.update(job);
         job = new Job();
-        return "job";
+    }
+    
+    public void clearForm() {
+        this.job = new Job();
     }
 
     public JobDAO getJobDAO() {
