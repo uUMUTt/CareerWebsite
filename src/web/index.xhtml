@@ -33,9 +33,11 @@
                         <label class="form-label">E-mail:</label><br/>
                         <h:inputText id="email" style="width: 250px;" styleClass="form-control-sm wid" value="#{sessionBean.email}" required="true" requiredMessage="Username is required!"/> <br/>
                         <br/>
+                        <h:messages for="email" style="color: red" />
                         <label class="form-label">Password:</label><br/>
-                        <h:inputText id="password" style="width: 250px;" styleClass="form-control-sm " value="#{sessionBean.password}" required="true" requiredMessage="Password is required!" validator="#{validationBean.validatePassword}"/> <br/>
+                        <h:inputText id="password" style="width: 250px;" styleClass="form-control-sm " value="#{sessionBean.password}" validator="#{validationBean.validatePassword}"/> <br/>
                         <br/>
+                        <h:messages for="password" style="color: red" />
                         <h:commandButton styleClass="btn btn-success" action="#{sessionBean.login}" value="Login" >
                             <f:ajax execute="email password" render="gonder" />
                         </h:commandButton>
@@ -47,8 +49,6 @@
                 </h:form>
 
             </h:panelGrid>
-
-
         </div>
     </h:body>
 </html>
